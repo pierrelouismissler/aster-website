@@ -1,0 +1,7 @@
+# Author:  DINDIN Meryll
+# Date:    03 Octobre 2019
+# Project: aster-website
+
+# Files due to compilation
+*.pyc
+__pycache__/
