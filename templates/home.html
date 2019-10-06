@@ -6,6 +6,43 @@
 
     <title>Aster | Home</title>
 
+    <section class="row home-bg-1" id="home">
+
+        <div class="title">
+            <span>A</span>
+            <span style="margin-bottom: 4vh;">s</span>
+            <span>T</span>
+            <span style="margin-bottom: 4vh;">e</span>
+            <span>R</span>
+        </div>
+
+        <div class="tagline">
+            <span>
+                AI-Powered Real-Time Emergency Calls Analysis
+            </span>
+        </div>
+
+        <div class="scroll">
+            <a href="#story">
+                <span></span><span></span><span></span>
+            </a>
+        </div>
+
+    </section>
+
+    <section class="row home-bg-2" id="story">
+
+    </section>
+
 </body>
+
+<script>
+$(function() {
+  $('a[href*=#]').on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+  });
+});
+</script>
 
 {% endblock %}
