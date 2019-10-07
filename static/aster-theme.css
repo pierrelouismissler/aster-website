@@ -43,6 +43,7 @@ section {
 }
 
 .home-bg-2 {
+    max-height: 95vh;
     background-color: #040404;
 }
 
@@ -130,4 +131,35 @@ section {
   100% {
     opacity: 0;
   }
+}
+
+.video-wrapper {
+    margin: 20px;
+    display: inline-block;
+    position: relative;
+    padding-bottom: 23.25%;
+    height: 0;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.description {
+    vertical-align: top;
+    display: inline-block;
+    text-align: justify;
+    background-color: #ffffff3d;
+    margin: 20px;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.description text {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
 }
