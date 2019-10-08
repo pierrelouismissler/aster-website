@@ -43,7 +43,14 @@ section {
 }
 
 .home-bg-2 {
-    max-height: 95vh;
+    background-color: #040404;
+}
+
+.home-bg-3 {
+    background-image: url('images/home-bg-2.jpg'); 
+}
+
+.home-bg-4 {
     background-color: #040404;
 }
 
@@ -69,6 +76,10 @@ section {
     font-size: 2em;
     font-family: 'Open Sans', sans-serif;
     text-align: center;
+}
+
+.offset {
+    margin-top: 30px;
 }
 
 .scroll {
@@ -147,13 +158,14 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: 10px;
 }
 
 .description {
     vertical-align: top;
     display: inline-block;
     text-align: justify;
-    background-color: #ffffff3d;
+    background-color: #000000b3;
     margin: 20px;
     padding: 12px;
     border-radius: 10px;
@@ -162,4 +174,88 @@ section {
 .description text {
     color: white;
     font-family: 'Open Sans', sans-serif;
+}
+
+.team-member {
+    margin: 15px 0;
+    padding: 0;
+}
+
+.team-member figure {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.team-member figure img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.team-member figcaption ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    visibility: visible;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.team-member figcaption ul li {
+    display: inline-block;
+    padding: 10px;
+}
+
+.team-member h4 {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    margin: 20px;
+    padding: 0;
+}
+
+.team-member figcaption {
+    text-align: center;
+    border-radius: 10px;
+    color: transparent;
+    background-color: transparent;
+    position: absolute;
+    z-index: 996;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.team-member figure:hover figcaption {
+    visibility: visible;
+    color: #fff;
+    background: #040404; 
+    height: 100%;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.team-member figure figcaption ul li a {
+    color: white;
+}
+
+.team-member figure:hover figcaption ul li a {
+    color: white;
+}
+
+.team-member figure:hover figcaption ul li a:hover {
+    color: #ff006c;
 }
