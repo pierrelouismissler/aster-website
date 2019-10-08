@@ -148,12 +148,31 @@ section {
   }
 }
 
-.align-center{
+.align-center {
     text-align: center;
 }
 
+.m-r-20 {
+    margin-right: 20px;
+}
+
+.m-l-20 {
+    margin-left: 20px;
+}
+
+.p-b-50 {
+    padding-bottom: 50px;
+}
+
+.v-a-b {
+    vertical-align: bottom;
+}
+
+.v-a-t {
+    vertical-align: top;
+}
+
 .video-wrapper {
-    margin: 10px;
     width: 45%;
     display: inline-block;
     position: relative;
@@ -171,11 +190,9 @@ section {
 }
 
 .description {
-    vertical-align: top;
     display: inline-block;
     text-align: justify;
     background-color: #000000b3;
-    margin: 10px;
     padding: 12px;
     border-radius: 10px;
     width: 45%
