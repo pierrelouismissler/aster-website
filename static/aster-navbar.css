@@ -83,7 +83,7 @@
     transition: -webkit-transform .35s ease-in;
     transition: transform .35s ease-in;
     transition: transform .35s ease-in, -webkit-transform .35s ease-in;
-    width: 40vw;
+    width: 30vw;
 }
 
 .top-wrapper .menu > ul {

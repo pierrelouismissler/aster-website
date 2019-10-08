@@ -54,6 +54,10 @@ section {
     background-color: #040404;
 }
 
+.home-bg-5 {
+    background-image: url('images/home-bg-3.jpg'); 
+}
+
 .title {
     margin-top: 10vh;
     justify-content: space-evenly;
@@ -144,8 +148,13 @@ section {
   }
 }
 
+.align-center{
+    text-align: center;
+}
+
 .video-wrapper {
-    margin: 20px;
+    margin: 10px;
+    width: 45%;
     display: inline-block;
     position: relative;
     padding-bottom: 23.25%;
@@ -166,9 +175,10 @@ section {
     display: inline-block;
     text-align: justify;
     background-color: #000000b3;
-    margin: 20px;
+    margin: 10px;
     padding: 12px;
     border-radius: 10px;
+    width: 45%
 }
 
 .description text {
@@ -240,8 +250,8 @@ section {
 .team-member figure:hover figcaption {
     visibility: visible;
     color: #fff;
-    background: #040404; 
-    height: 100%;
+    background: rgb(4, 4, 4, 0.75); 
+    height: 70%;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -250,6 +260,7 @@ section {
 
 .team-member figure figcaption ul li a {
     color: white;
+    font-size: 20px;
 }
 
 .team-member figure:hover figcaption ul li a {
