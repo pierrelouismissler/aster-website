@@ -1,0 +1,169 @@
+form label {
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    width: 90%;
+    margin: 0 0 0 2rem;
+}
+ 
+form input#name,
+form input#email,
+form input#subject {
+    width: 100%;
+    background-color: #fafafa;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+    padding: 0px 0px 0px 20px;
+    font-size: 16px;
+    margin: 0 0 0 0;
+}
+ 
+form textarea#message {
+    width: 100%;
+    height: 100px;
+    background-color: #fafafa;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+    margin-bottom: 10px;
+    padding: 10px 0px 0px 20px;
+    font-size: 16px;
+    margin: 0 0 0 0;
+}
+ 
+form input#submit {
+    width: 100%;
+    background-color: transparent;
+    display: block;
+    font-weight:bold; 
+    text-align: center; 
+    color: white; 
+}
+ 
+form input#submit:hover{
+    cursor: pointer;
+    color: black;
+}
+
+.fit-input {
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.flash {
+  background-color: #FBB0B0;
+  padding: 10px;
+  width: 400px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6e707e;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #d1d3e2;
+    border-radius: .35rem;
+    -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+}
+
+.box {
+    width: 70%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.2);
+    padding: 35px;
+    background-clip: padding-box;
+    text-align: center;
+    text-decoration: none;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    background-image: url('images/home-contact.jpg'); 
+    margin: 18vh auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60vw;
+    position: relative;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.close {
+  color: white;
+  opacity: 1.0;
+  text-shadow: none;
+}
+
+.close:not(:disabled):not(.disabled):focus, .close:not(:disabled):not(.disabled):hover {
+  color: #ff006c;
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.popup .close:hover {
+    color: #ff006c;
+}
+
+.popup .content {
+    min-height: 30%;
+    overflow: auto;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.send-contact{
+    width: 25%;
+    max-height: 40px;
+    display: inline-block;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.send-contact:hover{
+    color: #000000;
+    background-color: #FFFFFF;
+}
