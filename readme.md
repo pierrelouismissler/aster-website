@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 ```python
 {
-	"secret-key": "5y2znLF4Q8xec"
+    "secret-key": "5y2znLF4Q8xec"
 }
 ```
 
