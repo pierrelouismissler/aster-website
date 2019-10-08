@@ -164,6 +164,10 @@ section {
     padding-bottom: 50px;
 }
 
+.p-b-70 {
+    padding-bottom: 70px;
+}
+
 .v-a-b {
     vertical-align: bottom;
 }
@@ -286,4 +290,95 @@ section {
 
 .team-member figure:hover figcaption ul li a:hover {
     color: #ff006c;
+}
+
+.line-bottom {
+    text-align: center;
+    width: 80vw;
+    height: 50px;
+    border-bottom: 1px solid white;
+    position: relative;
+}
+
+.line-top {
+    text-align: center;
+    width: 80vw;
+    height: 50px;
+    border-top: 1px solid white;
+    position: relative;
+}
+
+.logo {
+    line-height: 20px;
+    background-color: #ffffffa1;
+    border-radius: 10px;
+    justify-content: space-evenly;
+    padding: 0;
+}
+
+.logo div {
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin: 20px;
+}
+
+.logo div a img {
+    width: 100%;
+}
+
+.contact {
+    line-height: 20px;
+    justify-content: space-evenly;
+    color: white;
+    font-size: 20px;
+}
+
+.contact div {
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.contact div i {
+    height: 60px;
+    width: 60px;
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.button-contact{
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 300;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.button-contact:hover{
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+.bouncy{
+    animation:bouncy 5s infinite linear;
+    position:relative;
+}
+
+@keyframes bouncy {
+    0%{top:0em} 
+    40%{top:0em}
+    43%{top:-0.9em}
+    46%{top:0em}
+    48%{top:-0.4em}
+    50%{top:0em}
+    100%{top:0em;}
 }
