@@ -41,7 +41,7 @@ def home_page():
             return render_template('home.html', form=form)
 
         else:
-            
+
             # Compile the message for email rendering
             tos = ['aster.messages@gmail.com']
             msg = Message(subject=form.subject.data, sender=form.email.data, recipients=tos)
@@ -63,6 +63,24 @@ def home_page():
     elif request.method == 'GET':
 
         return render_template('home.html', form=form)
+
+# Render articles talking about Aster
+@application.route('/press', methods=['GET'])
+def press_page():
+
+    return render_template('press.html')
+
+# Explain vision and roadmap for any new contributor
+@application.route('/contribute', methods=['GET'])
+def contribution_page():
+
+    return render_template('contribute.html')
+
+# Run our simulation / demo
+@application.route('/demo', methods=['GET'])
+def demo_page():
+
+    return render_template('demo.html')
 
 if __name__ == '__main__':
 
