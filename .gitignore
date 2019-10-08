@@ -5,3 +5,6 @@
 # Files due to compilation
 *.pyc
 __pycache__/
+
+# Sensitive materials
+config/
