@@ -11,7 +11,7 @@ application = Flask(__name__)
 application.secret_key = crd['secret_key']
 
 # Setting up Mails
-crd = json.load(open('config/config-email.json'))
+crd = json.load(open('config/config-mail.json'))
 application.config.update(**crd)
 app_mailing = Mail(application)
 
