@@ -31,7 +31,7 @@
 
 .top-wrapper {
     font-family: 'Open Sans', sans-serif;
-    right: 5vh;
+    right: 2vw;
     position: absolute;
     top: 0;
     max-width: 100%;
@@ -83,10 +83,11 @@
     transition: -webkit-transform .35s ease-in;
     transition: transform .35s ease-in;
     transition: transform .35s ease-in, -webkit-transform .35s ease-in;
-    width: 30vw;
+    width: 15vw;
 }
 
 .top-wrapper .menu > ul {
+    margin-right: 2vw;
     margin-top: 5px;
     align-items: center;
     display: flex;
