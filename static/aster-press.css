@@ -2,16 +2,8 @@
     background-image: url('images/press-bg.jpeg'); 
 }
 
-.container-press {
-    max-width: 95vw;
-}
-
-.carousel-item {
-    display: -webkit-inline-box;
-}
-
 .carousel-inner {
-    display: inline-flex;
+    max-width: 100%;
 }
 
 .carousel-control-next-icon, .carousel-control-prev-icon {
@@ -33,4 +25,29 @@
 
 .carousel-indicators {
     bottom: -5vh;
+}
+
+.row-equal {
+    height: 100%;
+}
+
+.row-equal > div[class*='col-'] {
+    display: inline-block;
+    flex: 1 0 auto;
+}
+
+.row-equal .card {
+   width: 100%;
+}
+
+.carousel-inner>.row-equal.active, 
+.carousel-inner>.row-equal.next, 
+.carousel-inner>.row-equal.prev {
+    display: flex;
+}
+
+.carousel-inner>.row-equal.active.left, 
+.carousel-inner>.row-equal.active.right {
+    opacity: 0.5;
+    display: inline-block;
 }
