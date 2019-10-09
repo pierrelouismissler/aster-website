@@ -6,6 +6,9 @@
 *.pyc
 __pycache__/
 
-# Sensitive materials
-config/
-.elasticbeanstalk/
+# Irrelevant files
+assets/
+.gitignore
+contributing.md
+license.txt
+readme.md

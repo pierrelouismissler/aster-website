@@ -84,5 +84,5 @@ def demo_page():
 
 if __name__ == '__main__':
 
-    arg = {'debug': True, 'threaded': True}
-    application.run(host='127.0.0.1', port=8080, **arg)
+   arg = {'debug': True, 'threaded': True}
+   application.run(host='127.0.0.1', port=8080, **arg)
