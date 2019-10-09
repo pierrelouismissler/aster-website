@@ -1,0 +1,36 @@
+.press-bg {
+    background-image: url('images/press-bg.jpeg'); 
+}
+
+.container-press {
+    max-width: 95vw;
+}
+
+.carousel-item {
+    display: -webkit-inline-box;
+}
+
+.carousel-inner {
+    display: inline-flex;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    height: 50px;
+    width: 25px;
+    background-color: #ff006c;
+    border-radius: 25px;
+    background-size: 10px;
+    z-index: 1000;
+}
+
+.carousel-control-next-icon {
+    margin-right: -5vw;
+}
+
+.carousel-control-prev-icon {
+    margin-left: -5vw;
+}
+
+.carousel-indicators {
+    bottom: -5vh;
+}

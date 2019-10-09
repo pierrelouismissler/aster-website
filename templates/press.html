@@ -4,18 +4,128 @@
 
 <body onload="document.body.style.opacity='1'">
 
-    <title>Aster | Press</title>
+    <title>AsTeR | Press</title>
 
-    <section class="row home-bg-1" id="home">
+    <section class="row press-bg">
 
-        <div class="tagline">
-            <span>
-                Press releases regarding Aster, Stay Tuned!
-            </span>
+        <div class="container container-press">
+            <div id="media-carousel" class="carousel slide" data-ride="carousel">
+
+                <ol class="carousel-indicators" style="color: black;">
+                  <li data-target="#media-carousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#media-carousel" data-slide-to="1"></li>
+                  <li data-target="#media-carousel" data-slide-to="2"></li>
+                  <li data-target="#media-carousel" data-slide-to="3"></li>
+                  <li data-target="#media-carousel" data-slide-to="4"></li>
+                  <li data-target="#media-carousel" data-slide-to="5"></li>
+                </ol>
+
+                <div class="carousel-inner">
+
+                    <div class="carousel-item col-md-4 active">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" src="static/images/articles/article-01.png" alt="Medium Article">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="https://medium.com/@merylldin/project-aster-ibm-call-for-code-30d959614be7" target="_blank">The exciting design of Project AsTeR</a></h4>
+                                <p class="card-text"><small class="text-muted">Written on September, 3rd.</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item col-md-4">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" src="static/images/articles/article-02.png" alt="TechRepublic Article">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="https://www.techrepublic.com/article/ibm-announces-the-finalists-of-call-for-code-2019/" target="_blank">Finalists of Call for Code 2019</a></h4>
+                                <p class="card-text"><small class="text-muted">Written on September, 17th.</small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item col-md-4">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" src="static/images/articles/article-03.png" alt="Berkeley Article">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="https://funginstitute.berkeley.edu/news/meng-alumni-address-disaster-response-through-project-aster/" target="_blank"> Berkeley MEng alumni</a></h4>
+                                <p class="card-text"><small class="text-muted">Written on September, 18th.</small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item col-md-4">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" src="static/images/articles/article-04.png" alt="IBM Article">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="https://newsroom.ibm.com/2019-09-17-Top-five-open-source-powered-solutions-to-mitigate-the-impact-of-natural-disasters-announced-as-finalists-in-Call-for-Code-global-coding-challenge" target="_blank">Top five open source-powered solutions</a></h4>
+                                <p class="card-text"><small class="text-muted">Written on September, 17th.</small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item col-md-4">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" src="static/images/articles/article-05.png" alt="IBM Article">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="https://ibmcode-staging.us-east.containers.mybluemix.net/callforcode/projects/" target="_blank">Call for Code 2019 Global Challenge</a></h4>
+                                <p class="card-text"><small class="text-muted">Written on September, 17th.</small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item col-md-4">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" src="static/images/articles/article-06.png" alt="TechCrunch Article">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="https://techcrunch.com/sponsored/vote-for-your-top-natural-disaster-tech-solution/" target="_blank">TechCrunch Public Vote</a></h4>
+                                <p class="card-text"><small class="text-muted">Written on September, 12th.</small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="carousel-control-prev" href="#media-carousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+
+                    <a class="carousel-control-next" href="#media-carousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+
+                </div>
+
+            </div>
         </div>
 
     </section>
 
 </body>
+
+<script>
+$(document).ready(function() {
+  $("#media-carousel").on("slide.bs.carousel", function(e) {
+    var $e = $(e.relatedTarget);
+    var idx = $e.index();
+    var itemsPerSlide = 3;
+    var totalItems = $(".carousel-item").length;
+
+    if (idx >= totalItems - (itemsPerSlide - 1)) {
+      var it = itemsPerSlide - (totalItems - idx);
+      for (var i = 0; i < it; i++) {
+        // append slides to end
+        if (e.direction == "left") {
+          $(".carousel-item")
+            .eq(i)
+            .appendTo(".carousel-inner");
+        } else {
+          $(".carousel-item")
+            .eq(0)
+            .appendTo($(this).find(".carousel-inner"));
+        }
+      }
+    }
+  });
+});
+</script>
 
 {% endblock %}
