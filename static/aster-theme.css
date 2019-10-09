@@ -193,6 +193,33 @@ section {
     border-radius: 10px;
 }
 
+.image-wrapper {
+    max-width: 100%;
+    display: inline-block;
+    position: relative;
+    padding-bottom: 23.25%;
+    height: 0;
+}
+
+.image-wrapper img {
+    max-width: 100%;
+}
+
+.text-feature {
+    display: inline-block;
+    text-align: justify;
+    background-color: #000000b3;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 5vh;
+}
+
+.text-feature text {
+    color: white;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+}
+
 .description {
     display: inline-block;
     text-align: justify;
@@ -247,6 +274,7 @@ section {
     vertical-align: middle;
     margin: 20px;
     padding: 0;
+    font-size: 1vw;
 }
 
 .team-member figcaption {
@@ -272,7 +300,7 @@ section {
     visibility: visible;
     color: #fff;
     background: rgb(4, 4, 4, 0.75); 
-    height: 70%;
+    height: 100%;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -367,5 +395,6 @@ section {
 
 .button-contact:hover{
     color: #000000;
+    text-decoration: none;
     background-color: #FFFFFF;
 }
