@@ -14,13 +14,14 @@
               <li data-target="#media-carousel" data-slide-to="0" class="active"></li>
               <li data-target="#media-carousel" data-slide-to="1"></li>
               <li data-target="#media-carousel" data-slide-to="2"></li>
+              <li data-target="#media-carousel" data-slide-to="3"></li>
             </ol>
 
             <div class="container p-t-0 m-t-2 carousel-inner">
                 
-                <div class="row-equal carousel-item active m-t-0">
+                <div id="row-01" class="m-t-0">
 
-                    <div class="col-md-4">
+                    <div id="card-01">
                         <div class="card h-100">
                             <img class="card-img-top img-fluid" src="static/images/articles/article-01.png" alt="Medium Article">
                             <div class="card-body">
@@ -30,7 +31,7 @@
                         </div>
                     </div>
                 
-                    <div class="col-md-4">
+                    <div id="card-02">
                         <div class="card h-100">
                             <img class="card-img-top img-fluid" src="static/images/articles/article-02.png" alt="TechRepublic Article">
                             <div class="card-body">
@@ -40,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div id="card-03">
                         <div class="card h-100">
                             <img class="card-img-top img-fluid" src="static/images/articles/article-03.png" alt="Berkeley Article">
                             <div class="card-body">
@@ -52,9 +53,9 @@
 
                 </div>
 
-                <div class="row-equal carousel-item m-t-0">
+                <div id="row-02" class="m-t-0">
 
-                    <div class="col-md-4">
+                    <div id="card-04">
                         <div class="card">
                             <img class="card-img-top img-fluid" src="static/images/articles/article-04.png" alt="IBM Article">
                             <div class="card-body">
@@ -64,7 +65,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div id="card-05">
                         <div class="card">
                             <img class="card-img-top img-fluid" src="static/images/articles/article-05.png" alt="IBM Article">
                             <div class="card-body">
@@ -74,7 +75,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div id="card-06">
                         <div class="card">
                             <img class="card-img-top img-fluid" src="static/images/articles/article-06.png" alt="TechCrunch Article">
                             <div class="card-body">
@@ -86,9 +87,9 @@
 
                 </div>
 
-                <div class="row-equal carousel-item m-t-0">
+                <div id="row-03" class="m-t-0">
 
-                    <div class="col-md-4">
+                    <div id="card-07">
                         <div class="card">
                             <img class="card-img-top img-fluid" src="static/images/articles/article-07.png" alt="CTA Article">
                             <div class="card-body">
@@ -98,7 +99,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div id="card-08">
                         <div class="card">
                             <img class="card-img-top img-fluid" src="static/images/articles/article-08.png" alt="Berkeley Article">
                             <div class="card-body">
@@ -108,12 +109,46 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div id="card-09">
                         <div class="card">
                             <img class="card-img-top img-fluid" src="static/images/articles/article-09.png" alt="IBM Article">
                             <div class="card-body">
                                 <h4 class="card-title"><a href="https://ibmcode-staging.us-east.containers.mybluemix.net/callforcode/blogs/call-for-code-2019-finalist-aster/" target="_blank">IBM Presentation</a></h4>
                                 <p class="card-text"><small class="text-muted">Written on September, 12th, 2019.</small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="row-04" class="m-t-0">
+
+                    <div id="card-10">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" src="static/images/articles/article-10.png" alt="NTW Article">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="https://thenextweb.com/artificial-intelligence/2019/10/13/ibm-announces-2019-call-for-code-grand-prize-winner/" target="_blank">IBM Winners Announced</a></h4>
+                                <p class="card-text"><small class="text-muted">Written on October, 13th, 2019.</small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="card-11">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" src="static/images/articles/article-11.png" alt="IBM Article">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="https://www.ibm.com/blogs/jobs/2019/06/18/code-and-response-codeathon-providing-coders-with-the-opportunity-to-tackle-real-world-issues/" target="_blank">Thomas Experience as Firefighter</a></h4>
+                                <p class="card-text"><small class="text-muted">Written on June, 28th, 2019, 2019.</small></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="card-12">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" src="static/images/articles/article-12.png" alt="IBM Article">
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="https://developer.ibm.com/callforcode/blogs/weve-been-everywhere/" target="_blank">Aster wins Berkeley Hackathon</a></h4>
+                                <p class="card-text"><small class="text-muted">Written on July, 26th, 2019.</small></p>
                             </div>
                         </div>
                     </div>
@@ -136,5 +171,45 @@
     </section>
 
 </body>
+
+<script>
+function adaptCards() {
+    if ($(window).width() > 596) {
+        $('#row-01').addClass('row-equal carousel-item active');
+        $('#card-01').addClass('col-md-4');
+        $('#card-02').addClass('col-md-4');
+        $('#card-03').addClass('col-md-4');
+        $('#row-02').addClass('row-equal carousel-item');
+        $('#card-04').addClass('col-md-4');
+        $('#card-05').addClass('col-md-4');
+        $('#card-06').addClass('col-md-4');
+        $('#row-03').addClass('row-equal carousel-item');
+        $('#card-07').addClass('col-md-4');
+        $('#card-08').addClass('col-md-4');
+        $('#card-09').addClass('col-md-4');
+        $('#row-04').addClass('row-equal carousel-item');
+        $('#card-10').addClass('col-md-4');
+        $('#card-11').addClass('col-md-4');
+        $('#card-12').addClass('col-md-4');
+
+    }
+    else {
+        $('.carousel').carousel('pause')
+        $('#card-01').addClass('col-md-12 carousel-item');
+        $('#card-02').addClass('col-md-12 carousel-item');
+        $('#card-03').addClass('col-md-12 carousel-item');
+        $('#card-04').addClass('col-md-12 carousel-item');
+        $('#card-05').addClass('col-md-12 carousel-item');
+        $('#card-06').addClass('col-md-12 carousel-item');
+        $('#card-07').addClass('col-md-12 carousel-item');
+        $('#card-08').addClass('col-md-12 carousel-item');
+        $('#card-09').addClass('col-md-12 carousel-item');
+        $('#card-10').addClass('col-md-12 carousel-item');
+        $('#card-11').addClass('col-md-12 carousel-item');
+        $('#card-12').addClass('col-md-12 carousel-item');
+    }
+}
+adaptCards();
+</script>
 
 {% endblock %}

@@ -104,6 +104,7 @@ form input#submit:hover{
 .overlay:target {
     visibility: visible;
     opacity: 1;
+    z-index: 1000;
 }
 
 .popup {
@@ -113,6 +114,12 @@ form input#submit:hover{
     border-radius: 10px;
     width: 60vw;
     position: relative;
+}
+
+@media(max-width:576px){
+    .popup {
+        width: 92vw;
+    }
 }
 
 .popup h2 {
@@ -149,6 +156,13 @@ form input#submit:hover{
     overflow: auto;
     margin-right: 10%;
     margin-left: 10%;
+}
+
+@media(max-width:576px){
+    .popup .content {
+        margin-right: 2%;
+        margin-left: 2%;
+    }
 }
 
 .send-contact{

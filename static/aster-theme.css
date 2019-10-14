@@ -13,10 +13,26 @@ body, html {
     font-family: 'Roboto', sans-serif;
 }
 
+@media(max-width:576px){
+    body, html {
+        min-height: 100vh;
+        height: auto !important;
+        overflow: visible;
+    }
+}
+
 section {
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+@media(max-width:576px){
+    section {
+        min-height: 100vh;
+        height: auto !important;
+        overflow: visible;
+    }
 }
 
 .row {
@@ -36,6 +52,14 @@ section {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+}
+
+@media(max-width:576px){
+    .row {
+        min-height: 100vh;
+        height: auto !important;
+        overflow: none;
+    }
 }
 
 .home-bg-1 {
@@ -68,10 +92,26 @@ section {
     text-align: center;
 }
 
+@media(max-width:576px){
+    .title {
+        font-size: 10vh;
+    }
+}
+
 .title span {
     display: inline-block;
     line-height: 1em;
     vertical-align: middle;
+}
+
+.small-letter {
+    margin-bottom: 4vh;
+}
+
+@media(max-width:576px){
+    .small-letter {
+        margin-bottom: 2vh;
+    }
 }
 
 .tagline {
@@ -80,6 +120,13 @@ section {
     font-size: 2em;
     font-family: 'Open Sans', sans-serif;
     text-align: center;
+}
+
+@media(max-width:576px){
+    .tagline {
+        width: 90vw;
+        font-size: 1.5em;
+    }
 }
 
 .offset {
@@ -184,6 +231,14 @@ section {
     height: 0;
 }
 
+@media(max-width:576px){
+    .video-wrapper {
+        width: 92%;
+        margin: 2vh 0px 2vh 0px;
+        padding-bottom: 56.25%;
+    }
+}
+
 .video-wrapper iframe {
     position: absolute;
     top: 0;
@@ -201,6 +256,15 @@ section {
     height: 0;
 }
 
+@media(max-width:576px){
+    .image-wrapper {
+        height: auto !important;
+        padding-bottom: 0px;
+        margin-top: 3vh;
+        margin-bottom: 3vh;
+    }
+}
+
 .image-wrapper img {
     max-width: 100%;
 }
@@ -214,10 +278,23 @@ section {
     margin-bottom: 5vh;
 }
 
+@media(max-width:576px){
+    .text-feature {
+        margin: 2vh 3vw 2vh 3vw;
+        padding: 0px;
+    }
+}
+
 .text-feature text {
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'Open Sans', sans-serif;
+}
+
+@media(max-width:576px){
+    .text-feature text {
+        font-size: 15px;
+    }
 }
 
 .description {
@@ -229,14 +306,34 @@ section {
     width: 45%
 }
 
+@media(max-width:576px){
+    .description {
+        width: 92%;
+        margin: 1vh 0px 1vh 0px;
+    }
+}
+
 .description text {
     color: white;
+    font-size: 16px;
     font-family: 'Open Sans', sans-serif;
+}
+
+@media(max-width:576px){
+    .description text {
+        font-size: 15px;
+    }
 }
 
 .team-member {
     margin: 15px 0;
     padding: 0;
+}
+
+@media(max-width:576px){
+    .team-member {
+        margin: 2vh 15vw 2vh 15vw;
+    }
 }
 
 .team-member figure {
@@ -275,6 +372,12 @@ section {
     margin: 20px;
     padding: 0;
     font-size: 1vw;
+}
+
+@media(max-width:576px){
+    .team-member h4 {
+        font-size: 3vh;
+    }
 }
 
 .team-member figcaption {
@@ -344,6 +447,12 @@ section {
     padding: 0;
 }
 
+@media(max-width:576px){
+    .logo {
+        width: 90vw;
+    }
+}
+
 .logo div {
     vertical-align: middle;
     display: inline-block;
@@ -353,8 +462,21 @@ section {
     margin: 20px;
 }
 
+@media(max-width:576px){
+    .logo div {
+        display: contents;
+    }
+}
+
 .logo div a img {
     width: 100%;
+}
+
+@media(max-width:576px){
+    .logo div a img {
+        max-width: 30%;
+        margin: 2vh 3vw 2vh 3vw;
+    }
 }
 
 .contact {
@@ -369,6 +491,14 @@ section {
     text-align: center;
     vertical-align: middle;
     display: inline-block;
+}
+
+@media(max-width:576px){
+    .contact div {
+        max-width: 100%;
+        margin: 3vh 0vw 3vh 0vw;
+        padding: 0px;
+    }
 }
 
 .contact div i {

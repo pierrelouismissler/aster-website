@@ -10,15 +10,15 @@
 
         <div class="title">
             <span>A</span>
-            <span style="margin-bottom: 4vh;">s</span>
+            <span class="small-letter">s</span>
             <span>T</span>
-            <span style="margin-bottom: 4vh;">e</span>
+            <span class="small-letter">e</span>
             <span>R</span>
         </div>
 
         <div class="tagline">
             <span>
-                AI-Powered Real-Time Emergency Calls Analysis
+                AI-Powered Real-Time Emergency Calls Analysis and Effective Units Dispatching
             </span>
         </div>
 
@@ -38,11 +38,11 @@
             </span>
         </div>
 
-        <div class="image-wrapper col-4">
+        <div id="image-wrapper" class="image-wrapper">
             <img src="static/images/screen-map.png"/>
         </div>
 
-        <div class="col-6">
+        <div id="feature-wrapper">
 
             <div class="text-feature m-l-20">
                 <text>
@@ -80,7 +80,7 @@
                 <iframe src="https://www.youtube.com/embed/_SBBrj9y26M" frameborder="0" allowfullscreen></iframe>
             </div>
 
-            <div class="description m-l-20 v-a-b" style="margin-bottom: 6px;">
+            <div id="description-01" class="description m-l-20 v-a-b" style="margin-bottom: 6px;">
                 <text>
                      Whenever a natural disaster hits, everyone affected or panicking will tend to call 911 for support. Some of those calls have a higher priority than others, but the current responders are not able to know it before taking the call. <strong>AsTeR has been designed to answer this problem.</strong> Built as a modular platform, powered by an AI-enabled API, AsTeR catches incoming audio streams from saturated centers to extract key information and prioritize those calls before the responders answer those.
                 </text>
@@ -90,7 +90,7 @@
 
         <div class="container align-center p-b-70">
 
-            <div class="description m-r-20 v-a-t">
+            <div id="description-02" class="description m-r-20 v-a-t">
                 <text>
                     This project was founded in Berkeley, California, as part of the <a href="https://callforcode.org/">Call for Code 2019</a>. Here, earthquakes and wildfires are more common than in other places in the US. Emergency centers are overwhelmed every time such event occurs. By switching to an automatic mode, people needing help still have the opportunity to expose their emergency, before being redirected to a responder that ended his previous call.
                 </text>
@@ -277,6 +277,12 @@
                 </a>
             </div>
 
+            <div class="col-md-1">
+                <a href="https://www.unisdr.org" target="_blank">
+                    <img src="static/images/partners/un-office-isdr.png"/>
+                </a>
+            </div>
+
         </div>
 
         <div class="line-top"></div>
@@ -359,6 +365,24 @@ $(function() {
     $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
   });
 });
+</script>
+
+<script>
+function adaptFeatures() {
+    if ($(window).width() > 596) {
+        $('#feature-wrapper').addClass('col-6');
+        $('#image-wrapper').addClass('col-4');
+    }
+    else {
+        $('#feature-wrapper').addClass('col-12');
+        $('#image-wrapper').addClass('col-12');
+        $('#description-01').removeClass('m-l-20');
+        $('#description-01').removeClass('v-a-b');
+        $('#description-02').removeClass('m-r-20');
+        $('#description-02').removeClass('v-a-t');
+    }
+}
+adaptFeatures();
 </script>
 
 {% endblock %}

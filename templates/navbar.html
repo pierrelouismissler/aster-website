@@ -14,15 +14,27 @@
             <div class="button" id="menu-button"><i class="fa fa-bars fa-2x"></i></div>
         </label>
 
-        <nav class="menu">
+        <nav id="responsive-menu">
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/press">Press</a></li>
-                <!-- <li><a href="/contribute">Contribute</a></li>  -->
-                <!-- <li><a href="/demo">Demo</a></li>  -->
             </ul> 
         </nav>
 
     </div>
 
+    <!-- Defines the mobile menu -->
+
 </div>
+
+<script>
+function adaptMenu() {
+    if ($(window).width() > 596) {
+        $('#responsive-menu').addClass('menu');
+    }
+    else {
+        $('#responsive-menu').addClass('menu-mobile');
+    }
+}
+adaptMenu();
+</script>
