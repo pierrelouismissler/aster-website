@@ -8,32 +8,15 @@
 git clone https://github.com/Project-AsTeR/aster-website.git
 virtualenv -p python3 aster-website
 cd aster-website
-mkdir config
 source bin/activate
 pip install -r requirements.txt
 ```
 
-## Configure Flask:
+## For Jupyter lovers, add the environment to your kernels:
 
-**config/config-main.json**
-
-```python
-{
-    "secret-key": "5y2znLF4Q8xec"
-}
-```
-
-**config/config-mail.json**
-
-```python
-{
-    "MAIL_SERVER": "smtp.gmail.com",
-    "MAIL_PORT": 587,
-    "MAIL_USE_SSL": false,
-    "MAIL_USE_TLS": true,
-    "MAIL_USERNAME": "xxx",
-    "MAIL_PASSWORD": "xxx"
-}
+```bash
+pip install jupyter notebook ipython ipykernel
+python -m ipykernel install --user --name=aster-website
 ```
 
 ## From developpement to production:
@@ -50,15 +33,46 @@ Because this project is based on _Flask_, we use the AWS **Elastic Beanstalk** s
 
 From there, you can already access and visualize your application running online, under a name such as _service.id.zone.aws.com_. However, this is not done through secured connections and this is boring.
 
-3) **Get the SSL certificates:**
+3) **Configure the environment variables**
+
+This is mainly a good code practice, but you generally do now want to hardcode your credentials in your code. At least that is widely accepted in production settings. The way to go is to design environment variables, that are easily accessible from the running instance but written nowhere in your code. However, because there is a real difference between a development and a production environment, here are some advices about how to do it properly.
+
+My suggestion would be to use a virtualenv, and to configure your `bin/activate` to incorporate the variables once activated, and unset them when deativated. The way I usually do it is by first creating a json file (that you have to make sure to incorporate in `.ebignore` and `.gitignore`) aggregating all your environment variables.
+
+```python
+# Content of environment.json
+{
+    "SECRET_KEY": "xxx",
+    "MAIL_SERVER": "smtp.gmail.com",
+    "MAIL_PORT": 587,
+    "MAIL_USE_SSL": false,
+    "MAIL_USE_TLS": true,
+    "MAIL_USERNAME": "xxx",
+    "MAIL_PASSWORD": "xxx"
+}
+```
+
+Then use `./setenv.sh dev` and copy-paste the chunks directly into your `bin/activate` file. Once done, deactivate and reactivate your environment. Now you can work easily in your development environment with those environment variables.
+
+To get back to production settings, the AWS cli makes it as easy as possible. A simple call to `eb setenv key=value` configure your EB instance and the relative environment variable. In the case of this website, we only need to configure **Flask Security** and **Flask Mail**, which is done by calling `./setenv.sh prod`. As easy at is sounds.
+
+4) **Get the SSL certificates:**
 
 Unfortunately, your instance cannot use the HTTPS protocol without having SSL certificates. Usually, people would work with **openssl**, which is pretty straightforward. In our case, AWS makes our life easier once again, with the **Certificate Manager** service. You can then create your own certificate based on the domain name you previously bought.
 
-4) **Setup a listener for HTTPS:**
+5) **Setup a listener to use HTTPS:**
 
-Once again, everything is as simple as a click. Open the configuration of your **Elastic Beanstalk** instance, and click on _Modify_ under **Load Balancer**. There, add a new **listener** that redirects 443 (HTTPS) to 80 (HTTP) with the appropriate SSL certificate you created just before.
+Once again, everything is as simple as a click. Open the configuration of your **Elastic Beanstalk** instance, and click on _Modify_ under **Load Balancer**. There, add a new **listener** that redirects 443 (HTTPS) to 80 (HTTP) with the appropriate SSL certificate you created just before. For the ones that feel more comfortable with configuration files:
 
-5) **Redirect your domain name to your actual instance:**
+```bash
+option_settings:
+  aws:elb:listener:443:
+    SSLCertificateId: arn:aws:acm:us-east-2:1234567890123:certificate/xxx
+    ListenerProtocol: HTTPS
+    InstancePort: 80
+```
+
+6) **Redirect your domain name to your actual instance:**
 
 Here, we will dive back into the **Route 53**. Two objects have to be configured for to redirect the requests: a `Canonical Name`, such as _random.domain-name_ that takes as value your **EB** instance; an `Alias`, such as _www.domain-name_ for your **EB** instance as well. With those two records, you will be good to go!
 
