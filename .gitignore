@@ -9,3 +9,5 @@ __pycache__/
 # Sensitive materials
 config/
 .elasticbeanstalk/
+environment.json
+.ebextensions/https-listener.config
