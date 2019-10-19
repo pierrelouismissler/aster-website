@@ -52,7 +52,11 @@ My suggestion would be to use a virtualenv, and to configure your `bin/activate`
 }
 ```
 
-Then use `./setenv.sh dev` and copy-paste the chunks directly into your `bin/activate` file. Once done, deactivate and reactivate your environment. Now you can work easily in your development environment with those environment variables.
+Then use `./setenv.sh dev` and copy-paste the chunks directly into your `bin/activate` file. Once done, deactivate and reactivate your environment. Now you can work easily in your development environment with those environment variables. To verify if those variables have been exported, use:
+
+```bash
+python -c "import os, pprint; env_var=os.environ; pprint.pprint(dict(env_var), width=1);"
+```
 
 To get back to production settings, the AWS cli makes it as easy as possible. A simple call to `eb setenv key=value` configure your EB instance and the relative environment variable. In the case of this website, we only need to configure **Flask Security** and **Flask Mail**, which is done by calling `./setenv.sh prod`. As easy at is sounds.
 
