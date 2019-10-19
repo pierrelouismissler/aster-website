@@ -19,7 +19,7 @@ pip install jupyter notebook ipython ipykernel
 python -m ipykernel install --user --name=aster-website
 ```
 
-## From developpement to production:
+## From developement to production:
 
 Hosting a website, getting the appropriate certificates, setting the right listeners to accept HTTPS, here is what it takes with AWS. 
 
