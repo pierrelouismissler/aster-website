@@ -19,7 +19,7 @@ pip install jupyter notebook ipython ipykernel
 python -m ipykernel install --user --name=aster-website
 ```
 
-## From developpement to production:
+## From developement to production:
 
 Hosting a website, getting the appropriate certificates, setting the right listeners to accept HTTPS, here is what it takes with AWS. 
 
@@ -29,13 +29,13 @@ The first step is simple: Buy an available domain name with **Route 53**.
 
 2) **Setup a running instance with the project:**
 
-Because this project is based on _Flask_, we use the AWS **Elastic Beanstalk** service to run our application online. This service consists in a basic container running on an **EC2** instance and linked to a **S3** bucket for storage. In our case, the application itself does not require a lot of computational power (we do not host our deep learning models there), so we will opt for a **single virtual core** and **4 GB** of RAM (_t2.micro_ instance, which is also the default choice when setting up an instance). Now, AWS generally makes our lives easier as we do not even have to know all of that, or how subnets work, security groups, load balancers, IPs, gateways, and so on. Either you do it online with a clickable solution, either you use the **eb cli**, which is my favorite. AWS do provide great [tutorials](https://docs.aws.amazon.com/en_pv/elasticbeanstalk/latest/dg/ebextensions.html), and [templates](https://github.com/awsdocs/elastic-beanstalk-samples/tree/master/configuration-files) to configure your instance. In our case, only one file needs to be defined: `.elasticbeanstalk/config.yml`. (FYI: Pick the `Application` load balancer.) I will redirect anyone to the tutorials for that purpose. One may notice three other files in the project: `.ebextensions/https-instance.config`, which modifies core services to handle the HTTPS requests; `.ebextensions/upgrade_pip.config`, which is a set of command to force _setuptools_ and _pip_ upgrades; `.ebignore`, which is similar as a _.gitignore_ file, in the sense that you will only host on the instance what is necessary for it to run properly.
+Because this project is based on _Flask_, we use the AWS **Elastic Beanstalk** service to run our application online. This service consists in a basic container running on an **EC2** instance and linked to a **S3** bucket for storage. In our case, the application itself does not require a lot of computational power (we do not host our deep learning models there), so we will opt for a **single virtual core** and **4 GB** of RAM (_t2.micro_ instance, which is also the default choice when setting up an instance). Now, AWS generally makes our lives easier as we do not even have to know all of that, or how subnets work, security groups, load balancers, IPs, gateways, and so on. Either you do it online with a clickable solution, or you use the **eb cli**, which is my favorite. AWS provides great [tutorials](https://docs.aws.amazon.com/en_pv/elasticbeanstalk/latest/dg/ebextensions.html), and [templates](https://github.com/awsdocs/elastic-beanstalk-samples/tree/master/configuration-files) to configure your instance. In our case, only one file needs to be defined: `.elasticbeanstalk/config.yml`. (FYI: Pick the `Application` load balancer.) I will redirect anyone to the tutorials for that purpose. One may notice three other files in the project: `.ebextensions/https-instance.config`, which modifies core services to handle the HTTPS requests; `.ebextensions/upgrade_pip.config`, which is a set of command to force _setuptools_ and _pip_ upgrades; `.ebignore`, which is similar to a _.gitignore_ file in the sense that you will only host on the instance that is necessary for it to run properly.
 
 From there, you can already access and visualize your application running online, under a name such as _service.id.zone.aws.com_. However, this is not done through secured connections and this is boring.
 
 3) **Configure the environment variables**
 
-This is mainly a good code practice, but you generally do now want to hardcode your credentials in your code. At least that is widely accepted in production settings. The way to go is to design environment variables, that are easily accessible from the running instance but written nowhere in your code. However, because there is a real difference between a development and a production environment, here are some advices about how to do it properly.
+This is mainly a good code practice, but you generally do not want to hardcode your credentials in your code. At least that is widely accepted in production settings. The way to go is to design environment variables, that are easily accessible from the running instance but written nowhere in your code. However, because there is a real difference between a development and a production environment, here are some advices about how to do it properly.
 
 My suggestion would be to use a virtualenv, and to configure your `bin/activate` to incorporate the variables once activated, and unset them when deativated. The way I usually do it is by first creating a json file (that you have to make sure to incorporate in `.ebignore` and `.gitignore`) aggregating all your environment variables.
 
@@ -78,7 +78,7 @@ option_settings:
 
 6) **Redirect your domain name to your actual instance:**
 
-Here, we will dive back into the **Route 53**. Two objects have to be configured for to redirect the requests: a `Canonical Name`, such as _random.domain-name_ that takes as value your **EB** instance; an `Alias`, such as _www.domain-name_ for your **EB** instance as well. With those two records, you will be good to go!
+Here, we will dive back into the **Route 53**. Two objects have to be configured to redirect the requests: a `Canonical Name`, such as _random.domain-name_ that takes as value your **EB** instance; an `Alias`, such as _www.domain-name_ for your **EB** instance as well. With those two records, you will be good to go!
 
 ## Latest front page rendered:
 
