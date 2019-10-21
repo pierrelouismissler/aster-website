@@ -133,6 +133,10 @@ section {
     margin-top: 30px;
 }
 
+.tagline-offset {
+    margin-top: 80px;
+}
+
 .scroll {
     width: 100vw;
     text-align: center;

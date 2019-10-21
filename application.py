@@ -7,6 +7,7 @@ from imports import *
 # Secure application
 application = Flask(__name__)
 application.secret_key = os.environ['SECRET_KEY']
+application.google_maps_key = os.environ['GOOGLE_MAPS_API_KEY']
 
 # Setting up Mails
 cfg = ['MAIL_SERVER', 'MAIL_PORT', 'MAIL_USE_SSL', 'MAIL_USE_TLS', 'MAIL_USERNAME', 'MAIL_PASSWORD']
@@ -78,7 +79,15 @@ def contribution_page():
 @application.route('/demo', methods=['GET'])
 def demo_page():
 
-    return render_template('demo.html')
+    map_parameters = {
+        'zoom': 11.5,
+        'lat': 37.8212,  # San Francisco Coordinates
+        'lng': -122.3709,
+        'mapType': 'roadmap',
+        'center_on_user_location': False,
+    }
+
+    return render_template('demo.html', map_parameters=map_parameters, google_key=application.google_maps_key)
 
 if __name__ == '__main__':
 
