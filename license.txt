@@ -175,7 +175,8 @@
 
    END OF TERMS AND CONDITIONS
 
-   Copyright 2019 Meryll Dindin
+   Copyright 2019 Meryll Dindin, FLorian Fesch, Oskar Radermecker,
+   Thomas Galeon, Pierre-Louis Missler
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
