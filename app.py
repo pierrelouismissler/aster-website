@@ -91,23 +91,24 @@ def demo_page():
     return render_template('demo.html', map_parameters=map_parameters, google_key=application.google_maps_key)
 
 
-@application.route('/nlp_analysis')
+@application.route('/fetch_data')
 def fetch_real_time_data():
     warnings.simplefilter('ignore')
 
-    header = {'apikey': application.secret_key}
-    params = {'message': request.args.get('phone_number')}
+    #todo: replace with correct endpoint url
+    endpoint_url = "https://endpoint_url.com/"
 
-    req = requests.post('/'.join([NLP_URL, 'run']), headers=header, params=params)
-    arg = {'status': 200, 'mimetype': 'application/json'}
+    header = {'apikey': application.secret_key}
+    params = {'phone_number': request.args.get('phone_number')}
+
+    req = requests.post('/'.join([endpoint_url, 'run']), headers=header, params=params)
 
     try:
         req = json.loads(req.content)
         req['score'] = 300 * req['score']
-        return Response(response=json.dumps(req), **arg)
+        return Response(response=json.dumps(req))
     except:
-        return Response(response=json.dumps({'emotion': 0.0, 'score': 0.0, 'keysections': [], 'class': 'unknown'}),
-                        **arg)
+        return Response(response=json.dumps({'message': 'Error', 'location': None, 'score': 0.0, 'class': None}))
 
 
 if __name__ == '__main__':

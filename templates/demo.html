@@ -49,7 +49,7 @@
                                                 mention your location!
                                             </label><br>
                                             <input class="form-control form-control-sm" name = "phone number"
-                                                   type="text" placeholder="Enter your phone number here"
+                                                   type="tel" placeholder="Enter your phone number here"
                                                    id="phone-number-input">
                                         </div>
                                     </form>
@@ -76,14 +76,41 @@
                                 </div>
                                 <div class="modal-body">
                                     <form>
-                                        <div class="form-group">
-                                            <label for="phone-number" class="col-form-label" align="left">
-                                                Populate this with the output of the endpoint:
-                                                text,
-                                                location,
-                                                score,
-                                                class
+                                        <div class="form-group row" align="left">
+                                            <label for="message" class="col-form-label" align="left">
+                                                Message
                                             </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-message" class="form-control-static">Message will be
+                                                    updated here.</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="location" class="col-form-label" align="left">
+                                                Location
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-location" class="form-control-static">Location will be
+                                                    updated here.</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="Score" class="col-form-label" align="left">
+                                                Score
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-score" class="form-control-static">Score will be
+                                                    updated here.</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="Class" class="col-form-label" align="left">
+                                                Class
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-class" class="form-control-static">Class will be
+                                                    updated here.</p>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -113,27 +140,29 @@
     </main>
     </body>
 
- <script>
-
+    <script>
         var $message = document.getElementById('display-message');
         var $location = document.getElementById('display-location');
         var $score = document.getElementById('display-score');
         var $class = document.getElementById('display-class');
 
         document.getElementById('start-demo').addEventListener('click', function(event){
-
             var phone_number = document.getElementById("phone-number-input").value;
 
-            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-            $.getJSON($SCRIPT_ROOT+"/nlp_analysis?phone_number="+phone_number, function(response) {
-                $message.innerHTML = response.message;
-                $location.innerHTML = response.location;
-                $score.innerHTML = response.score;
-                $class.innerHTML = response.class;
-            });
+            function update_fields() {
+                $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+                $.getJSON($SCRIPT_ROOT+"/fetch_data?phone_number="+phone_number, function(response) {
+                    $message.innerHTML = response.message;
+                    $location.innerHTML = response.location;
+                    $score.innerHTML = response.score;
+                    $class.innerHTML = response.class;
+                });
+            }
+
+            var fetchInterval = setInterval(update_fields, 500);
+            setTimeout(function stopSimulation() {clearInterval(fetchInterval)}, 30000);
 
         }, false);
-
     </script>
 
 {% endblock %}
