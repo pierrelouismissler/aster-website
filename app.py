@@ -20,7 +20,8 @@ class ContactForm(Form):
     name = StringField('Name', 
         [validators.Length(min=2, max=50), validators.DataRequired("A name is required!")])
     email = StringField('Email', 
-        [validators.Length(min=2, max=50), validators.DataRequired("An address is required!"), validators.Email("Seems to be a typo here!")])
+        [validators.Length(min=2, max=50), validators.DataRequired("An email address is required!"), validators.Email(
+            "Seems like there is a typo here!")])
     subject = StringField('Subject', 
         [validators.Length(min=2, max=100), validators.DataRequired("Please give a subject!")])
     message = TextAreaField('Message', 
@@ -88,6 +89,26 @@ def demo_page():
     }
 
     return render_template('demo.html', map_parameters=map_parameters, google_key=application.google_maps_key)
+
+
+@application.route('/nlp_analysis')
+def fetch_real_time_data():
+    warnings.simplefilter('ignore')
+
+    header = {'apikey': application.secret_key}
+    params = {'message': request.args.get('phone_number')}
+
+    req = requests.post('/'.join([NLP_URL, 'run']), headers=header, params=params)
+    arg = {'status': 200, 'mimetype': 'application/json'}
+
+    try:
+        req = json.loads(req.content)
+        req['score'] = 300 * req['score']
+        return Response(response=json.dumps(req), **arg)
+    except:
+        return Response(response=json.dumps({'emotion': 0.0, 'score': 0.0, 'keysections': [], 'class': 'unknown'}),
+                        **arg)
+
 
 if __name__ == '__main__':
 

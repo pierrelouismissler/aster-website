@@ -27,7 +27,7 @@
                     <button type="button" class="btn aster-btn btn-outline-success btn-block mt-auto activated"
                             data-loading-text="Try me!" data-toggle="modal" data-target="#startDemo">Try me!</button>
 
-                    <!-- Modal -->
+                    <!-- Modal Phone Number-->
                     <div class="modal fade" id="startDemo" tabindex="-1" role="dialog"
                          aria-labelledby="startDemo" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -56,7 +56,40 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn aster-btn btn-outline-success btn-block mt-auto activated"
-                                            data-dismiss="modal">I am ready!</button>
+                                            id = "start-demo" data-toggle="modal" data-target="#asterDemo"
+                                            data-dismiss="modal">Ready!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Demo-->
+                    <div class="modal fade" id="asterDemo" tabindex="-1" role="dialog"
+                         aria-labelledby="asterDemo" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content aster-theme-modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="asterDemoLabel">Demo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="phone-number" class="col-form-label" align="left">
+                                                Populate this with the output of the endpoint:
+                                                text,
+                                                location,
+                                                score,
+                                                class
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn aster-btn btn-outline-success btn-block mt-auto activated"
+                                            data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -80,11 +113,27 @@
     </main>
     </body>
 
-    <script>
+ <script>
 
-        $("input[name='phone-number']").keyup(function() {
-            $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d)+$/, "($1)$2-$3"));
-        });
+        var $message = document.getElementById('display-message');
+        var $location = document.getElementById('display-location');
+        var $score = document.getElementById('display-score');
+        var $class = document.getElementById('display-class');
+
+        document.getElementById('start-demo').addEventListener('click', function(event){
+
+            var phone_number = document.getElementById("phone-number-input").value;
+
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+            $.getJSON($SCRIPT_ROOT+"/nlp_analysis?phone_number="+phone_number, function(response) {
+                $message.innerHTML = response.message;
+                $location.innerHTML = response.location;
+                $score.innerHTML = response.score;
+                $class.innerHTML = response.class;
+            });
+
+        }, false);
 
     </script>
+
 {% endblock %}
