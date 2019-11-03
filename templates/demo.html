@@ -22,8 +22,46 @@
                     attention.
                 </text>
                 <div class="btn-holder text-center row" style="width: 80%">
-                    <button type="button" data-toggle="button" data-loading-text="Try me!" onclick=""
-                            class="btn btn-outline-success aster-color btn-block mt-auto activated">Try me!</button>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn aster-btn btn-outline-success btn-block mt-auto activated"
+                            data-loading-text="Try me!" data-toggle="modal" data-target="#startDemo">Try me!</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="startDemo" tabindex="-1" role="dialog"
+                         aria-labelledby="startDemo" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content aster-theme-modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="startDemoLabel">Try me!</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="phone-number" class="col-form-label" align="left">
+                                                Welcome to the demo of AsTeR's v1.0!<br><br>
+                                                Enter your phone number and call (208) 953-2494 as if you
+                                                were calling 911.<br><br>
+                                                Briefly summarize your emergency and don't forget to
+                                                mention your location!
+                                            </label><br>
+                                            <input class="form-control form-control-sm" name = "phone number"
+                                                   type="text" placeholder="Enter your phone number here"
+                                                   id="phone-number-input">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn aster-btn btn-outline-success btn-block mt-auto activated"
+                                            data-dismiss="modal">I am ready!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="col demo-feature-with-border">
@@ -33,7 +71,7 @@
                 </script>
                 <script type="text/javascript" src="/static/includes/aster-map.js"></script>
                 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{google_key}}&callback=initMap&language=en"></script>
-{#                <div id="legend"><h5>Legend</h5></div>#}
+                {#                <div id="legend"><h5>Legend</h5></div>#}
             </div>
             <div class="demo-feature col-3">
                 <h1 class="text-center calls">Incoming calls</h1>
@@ -42,4 +80,11 @@
     </main>
     </body>
 
+    <script>
+
+        $("input[name='phone-number']").keyup(function() {
+            $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d)+$/, "($1)$2-$3"));
+        });
+
+    </script>
 {% endblock %}
