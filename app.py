@@ -10,9 +10,9 @@ application.secret_key = os.environ['SECRET_KEY']
 application.google_maps_key = os.environ['GOOGLEMAPS_API']
 
 # Setting up Mails
-# cfg = ['MAIL_SERVER', 'MAIL_PORT', 'MAIL_USE_SSL', 'MAIL_USE_TLS', 'MAIL_USERNAME', 'MAIL_PASSWORD']
-# application.config.update(**{k: os.environ[k] for k in cfg})
-# app_mailing = Mail(application)
+cfg = ['MAIL_SERVER', 'MAIL_PORT', 'MAIL_USE_SSL', 'MAIL_USE_TLS', 'MAIL_USERNAME', 'MAIL_PASSWORD']
+application.config.update(**{k: os.environ[k] for k in cfg})
+app_mailing = Mail(application)
 
 # Setup the contact form
 class ContactForm(Form):
