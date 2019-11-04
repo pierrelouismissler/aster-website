@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-  <head>
 
-    <!-- Add google analytics tag for an overview of usage -->  
+<head>
+
+    <!-- Add google analytics tag for an overview of usage -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145011764-1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-145011764-1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-145011764-1');
     </script>
 
     <!-- Defines website meta-data -->
     <meta charset="UTF-8">
     <meta name="author" content="Meryll Dindin"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Website Icon-->
     <link rel="icon" type="image/jpg" href="/static/images/logo-aster.png">
 
     <!-- Spread css files to all child of layout.html-->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">-->
     <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="static/font-awesome.min.css"> -->  
+    <!-- <link rel="stylesheet" type="text/css" href="static/font-awesome.min.css"> -->
     <link rel="stylesheet" href="https://lipis.github.io/bootstrap-social/assets/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="/static/aster-theme.css">
     <link rel="stylesheet" type="text/css" href="/static/aster-navbar.css">
@@ -36,11 +37,11 @@
     <!-- Load JS scripts -->
     <script src="/static/includes/jquery-3.4.1.min.js"></script>
     <script src="/static/includes/bootstrap.min.js"></script>
+    <!-- <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script> -->
 
+</head>
 
-  </head>
-  
-  {% include 'navbar.html' %}
-  {% block body %}{% endblock %}
+{% include 'navbar.html' %}
+{% block body %}{% endblock %}
 
 </html>

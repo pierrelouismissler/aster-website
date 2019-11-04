@@ -73,7 +73,7 @@ var dark_mode_style = [
 // Initialize and add the map
 function initMap() {
 
-    //////////////////////////  Map styles  ///////////////////
+    //////////////////////////  Map options  ///////////////////
     const map_options = {
         zoom: map_parameters.zoom,
         center: {lat: map_parameters.lat, lng: map_parameters.lng},
@@ -108,6 +108,42 @@ function initMap() {
     }
 }
 
+document.getElementById('close-demo').addEventListener('click', function(event){
+
+    function update_markers(last_response) {
+
+        // Scrape parameters
+        var latitude = parseFloat(last_response.latitude);
+        var longitude = parseFloat(last_response.longitude);
+        var score = parseFloat(last_response.priority).toFixed(2);
+        var phone_number = last_response.phone_number;
+
+
+        // Defines markers
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(latitude, longitude),
+            title: phone_number,
+            // icon: icons[define_emergency_type(call)].icon,
+            map: map
+        });
+
+        // Defines the info window
+        var contentString = '<div id="content"><div id="siteNotice"></div>'+
+            '<div id="bodyContent" style="color: #1b1e21"><p>Phone number: ' + phone_number + '</p>' +
+            '<p>Estimated priority: ' + score.toString() + '</p></div></div>';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
+        });
+    }
+
+    update_markers(last_response);
+
+}, false);
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
