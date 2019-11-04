@@ -128,8 +128,6 @@
                 <div id= 'map'></div>
                 <script type="text/javascript">
                     var map_parameters = {{ map_parameters|tojson|safe }};
-                    {#var call_history = {{ call_history|tojson|safe }};#}
-                    var last_response = last_response;
                 </script>
                 <script type="text/javascript" src="/static/includes/aster-map.js"></script>
                 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{google_key}}&callback=initMap&language=en"></script>
@@ -138,11 +136,11 @@
             <div class="demo-feature col-3">
                 <h1 class="text-center calls">Incoming calls</h1>
                 <div class="table-container">
-                    <table class="table table-striped table-dark text-center" data-url="{{ call_history|tojson|safe }}" id="call_log">
+                    <table class="table table-striped table-dark text-center" id="call_log">
                         <thead>
                         <tr>
-                            <th data-field="phone_number" scope="col">Phone number</th>
-                            <th data-sortable="true" data-field="score" scope="col">Priority</th>
+                            <th scope="col">Phone number</th>
+                            <th data-field="score" scope="col">Priority</th>
                         </tr>
                         </thead>
                     </table>
@@ -204,16 +202,7 @@
 
         document.getElementById('close-demo').addEventListener('click', function(event){
             clearInterval(fetchInterval);
-
             update_call_log(document.getElementById("call_log"), last_response);
-
-            {#var call_log = {{ call_history|tojson|safe }};#}
-            {#var phone_number = document.getElementById("phone-number-input").value;#}
-            {#var call_log = document.getElementById("call_log");#}
-
-            {#update_markers(call_log);#}
-            {#update_call_log(call_log, phone_number);#}
-
         }, false);
 
     </script>

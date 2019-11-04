@@ -28,8 +28,6 @@ class ContactForm(Form):
         [validators.Length(min=2, max=1000), validators.DataRequired("Empty bodies are not good for the planet...")])
     submit = SubmitField("Send")
 
-CALL_HISTORY = {}
-
 # Index / Home page rendering
 @application.route('/', methods=['GET', 'POST'])
 def home_page():
@@ -90,8 +88,7 @@ def demo_page():
         'center_on_user_location': False
     }
 
-    return render_template('demo.html', map_parameters=map_parameters, call_history=CALL_HISTORY,
-                           google_key=application.google_maps_key)
+    return render_template('demo.html', map_parameters=map_parameters, google_key=application.google_maps_key)
 
 
 @application.route('/fetch_call_data')
@@ -114,8 +111,6 @@ def fetch_call_data():
     except:
         req = {'phone_number': '012 234 5678', 'message': 'Error', 'location': None, 'score': 0.0, 'class': None}
 
-    #TODO: use a proper call id instead of the phone number
-    # CALL_HISTORY.update({params['phone_number']: req})
     return Response(response=json.dumps(req))
 
 

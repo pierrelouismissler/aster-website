@@ -118,24 +118,23 @@ document.getElementById('close-demo').addEventListener('click', function(event){
         var score = parseFloat(last_response.priority).toFixed(2);
         var phone_number = last_response.phone_number;
 
-
         // Defines markers
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(latitude, longitude),
             title: phone_number,
-            // icon: icons[define_emergency_type(call)].icon,
             map: map
         });
 
         // Defines the info window
         var contentString = '<div id="content"><div id="siteNotice"></div>'+
-            '<div id="bodyContent" style="color: #1b1e21"><p>Phone number: ' + phone_number + '</p>' +
-            '<p>Estimated priority: ' + score.toString() + '</p></div></div>';
+            '<div id="bodyContent" style="color: #1b1e21"><p><strong>Phone number:</strong> ' + phone_number + '</p>' +
+            '<p><strong>Priority:</strong> ' + score.toString() + '</p></div></div>';
 
         var infowindow = new google.maps.InfoWindow({
             content: contentString
         });
 
+        // Links the info window with the marker
         marker.addListener('click', function () {
             infowindow.open(map, marker);
         });
