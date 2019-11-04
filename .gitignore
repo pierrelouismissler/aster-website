@@ -4,18 +4,12 @@
 
 # Files due to compilation
 *.pyc
-__pycache__/
+__pycache__
 
-# Environment files
-help/
-Include/
-Lib/
-Scripts/
-tcl/
-.idea/
-
-# Sensitive materials
-config/
-.elasticbeanstalk/
+# Environment variables
 environment.json
+
+# Sensitive prod migration
+.elasticbeanstalk/config.yml
+.ebextensions/security.config
 .ebextensions/https-listener.config

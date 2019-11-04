@@ -7,8 +7,12 @@
 __pycache__/
 
 # Irrelevant files
-assets/
 .gitignore
+assets/
 contributing.md
 license.txt
 readme.md
+
+# Environment variables
+setenv.sh
+environment.json
