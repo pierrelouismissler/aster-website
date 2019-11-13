@@ -12,4 +12,4 @@ environment.json
 # Sensitive prod migration
 .elasticbeanstalk/config.yml
 .ebextensions/security.config
-.ebextensions/https-listener.config
+.ebextensions/listeners.config

@@ -14,5 +14,11 @@ license.txt
 readme.md
 
 # Environment variables
-setenv.sh
+deploy-env.sh
 environment.json
+
+# OS specific files
+environment-shared.json
+.ebextensions/security-shared.config
+.ebextensions/listeners-shared.config
+.elasticbeanstalk/config-shared.yaml
