@@ -48,7 +48,7 @@
                                                 Briefly summarize your emergency and don't forget to
                                                 mention your location!
                                             </label><br>
-                                            <input class="form-control form-control-sm" name = "phone number"
+                                            <input class="form-control form-control-sm" name="phone number"
                                                    type="tel" placeholder="Enter your phone number here"
                                                    id="phone-number-input">
                                         </div>
@@ -180,13 +180,34 @@
             cell2.innerHTML = call.priority;
         }
 
+        $('#phone-number-input').keyup(function(e) {
+
+                this.value = this.value.replace(/[^\-()0-9]/g, ''); //remove all chars, except dash and digits
+
+                if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+                var len = this.value.replace(/[^0-9]/g, '').length;
+                var val = $(this).val();
+                if (len === 1 && e.which !== 8 && e.which !== 0) {
+                    $(this).val("(" + val);
+                } else if (len === 3 && e.which !== 8 && e.which !== 0) {
+                    $(this).val(val + ")-");
+                } else if (len === 6 && e.which !== 8 && e.which !== 0) {
+                    $(this).val(val + "-");
+                }
+                $(this).attr('maxlength', '14');
+
+            });
+
         document.getElementById('start-demo').addEventListener('click', function(event){
             var phone_number = document.getElementById("phone-number-input").value;
 
             function update_fields() {
                 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-                $.getJSON($SCRIPT_ROOT+"/fetch_call_data?phone_number="+phone_number, function(response) {
+                $.getJSON($SCRIPT_ROOT+"/fetch_call_data?phone_number="+phone_number.replace(/[^0-9]/g, ''), function(response) {
                     last_response = response;
+                    last_response.phone_number = phone_number;
                     $message.innerHTML = response.text;
                     $location.innerHTML = "(" + response.latitude + ", " + response.longitude + ")";
                     $score.innerHTML = response.priority;
@@ -202,6 +223,7 @@
 
         document.getElementById('close-demo').addEventListener('click', function(event){
             clearInterval(fetchInterval);
+            console.log(last_response);
             update_call_log(document.getElementById("call_log"), last_response);
         }, false);
 
