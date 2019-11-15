@@ -2,7 +2,7 @@
 
 {%  block body %}
 
-    <body onload="document.body.style.opacity='1'">
+<body onload="document.body.style.opacity='1'">
     <link href="/static/aster-demo.css" rel="stylesheet">
 
     <main role="main" class="row home-bg-1" id='demo'>
@@ -12,26 +12,37 @@
             An interactive dashboard for first responders.
         </div>
         <div class="container row">
-            <div class="demo-feature col-3 align-top row" style="padding-right: 10px">
+
+            <div class="col demo-feature-with-border">
+                <div id= 'map'></div>
+                <script type="text/javascript">
+                    var map_parameters = {{ map_parameters|tojson|safe }};
+                </script>
+                <script type="text/javascript" src="/static/includes/aster-map.js"></script>
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key={{google_key}}&callback=initMap&language=en"></script>
+            </div>
+
+            <div class="demo-feature col-3 align-top row">
+            	
                 <text>
                     This is a simplified version of the dashboard that will be presented to call centers.
                     <br>
                     <br>
                     An interactive map displays the most recent calls. The priority scores and classes are displayed
                     on the right. This helps operators focus their efforts on those calls which require immediate
-                    attention.
+                    attention. The demo only shows post-processed calls, so the rendering may be incremental.
                 </text>
-                <div class="btn-holder text-center row" style="width: 80%">
+
+                <div class="btn-holder text-center" style="width: 80%">
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn aster-btn btn-outline-success btn-block mt-auto activated"
                             data-loading-text="Try me!" data-toggle="modal" data-target="#startDemo">Try me!</button>
 
                     <!-- Modal Phone Number-->
-                    <div class="modal fade" id="startDemo" tabindex="-1" role="dialog"
-                         aria-labelledby="startDemo" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content aster-theme-modal-content">
+                    <div class="modal fade" id="startDemo" tabindex="-1" role="dialog" aria-labelledby="startDemo" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document" style="display: inline-flex;">
+                            <div class="modal-content aster-theme-modal-content" style="max-width: 30vw;">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="startDemoLabel">Try me!</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -42,15 +53,15 @@
                                     <form>
                                         <div class="form-group">
                                             <label for="phone-number" class="col-form-label" align="left">
-                                                Welcome to the demo of AsTeR's v1.0!<br><br>
-                                                Enter your phone number and call (208) 953-2494 as if you
+                                                Welcome to the demo of AsTeR!<br><br>
+                                                Enter your phone number and call +1 (208) 953-2494 as if you
                                                 were calling 911.<br><br>
                                                 Briefly summarize your emergency and don't forget to
                                                 mention your location!
                                             </label><br>
                                             <input class="form-control form-control-sm" name="phone number"
-                                                   type="tel" placeholder="Enter your phone number here"
-                                                   id="phone-number-input">
+                                                   type="tel" placeholder="Enter your Phone Number"
+                                                   id="phone-number-input" style="width: 90%; text-align: center; margin-left: 1.25vw;">
                                         </div>
                                     </form>
                                 </div>
@@ -64,8 +75,7 @@
                     </div>
 
                     <!-- Modal Demo-->
-                    <div class="modal fade" id="asterDemo" tabindex="-1" role="dialog"
-                         aria-labelledby="asterDemo" aria-hidden="true">
+                    <div class="modal fade" id="asterDemo" tabindex="-1" role="dialog" aria-labelledby="asterDemo" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content aster-theme-modal-content">
                                 <div class="modal-header">
@@ -74,42 +84,134 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body col-4">
                                     <form>
                                         <div class="form-group row" align="left">
                                             <label for="message" class="col-form-label" align="left">
                                                 Message
                                             </label>
                                             <div class="col-sm-10">
-                                                <p id="display-message" class="form-control-static">Message will be
-                                                    updated here.</p>
+                                                <p id="display-ibm-message" class="form-control-static">...</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="confidence" class="col-form-label" align="left">
+                                                Confidence
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-ibm-confidence" class="form-control-static">...</p>
                                             </div>
                                         </div>
                                         <div class="form-group row" align="left">
                                             <label for="location" class="col-form-label" align="left">
-                                                Location
+                                                Features
                                             </label>
                                             <div class="col-sm-10">
-                                                <p id="display-location" class="form-control-static">Location will be
-                                                    updated here.</p>
+                                                <p id="display-ibm-features" class="form-control-static">...</p>
                                             </div>
                                         </div>
                                         <div class="form-group row" align="left">
-                                            <label for="Score" class="col-form-label" align="left">
-                                                Score
+                                            <label for="priority" class="col-form-label" align="left">
+                                                Priority
                                             </label>
                                             <div class="col-sm-10">
-                                                <p id="display-score" class="form-control-static">Score will be
-                                                    updated here.</p>
+                                                <p id="display-ibm-priority" class="form-control-static">...</p>
                                             </div>
                                         </div>
                                         <div class="form-group row" align="left">
-                                            <label for="Class" class="col-form-label" align="left">
+                                            <label for="class" class="col-form-label" align="left">
                                                 Class
                                             </label>
                                             <div class="col-sm-10">
-                                                <p id="display-class" class="form-control-static">Class will be
-                                                    updated here.</p>
+                                                <p id="display-ibm-class" class="form-control-static">...</p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-body col-4">
+                                    <form>
+                                        <div class="form-group row" align="left">
+                                            <label for="message" class="col-form-label" align="left">
+                                                Message
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-gcp-message" class="form-control-static">...</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="confidence" class="col-form-label" align="left">
+                                                Confidence
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-gcp-confidence" class="form-control-static">...</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="location" class="col-form-label" align="left">
+                                                Features
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-gcp-features" class="form-control-static">...</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="priority" class="col-form-label" align="left">
+                                                Priority
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-gcp-priority" class="form-control-static">...</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="class" class="col-form-label" align="left">
+                                                Class
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-gcp-class" class="form-control-static">...</p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-body col-4">
+                                    <form>
+                                        <div class="form-group row" align="left">
+                                            <label for="message" class="col-form-label" align="left">
+                                                Message
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-aws-message" class="form-control-static">...</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="confidence" class="col-form-label" align="left">
+                                                Confidence
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-aws-confidence" class="form-control-static">...</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="location" class="col-form-label" align="left">
+                                                Features
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-aws-features" class="form-control-static">...</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="priority" class="col-form-label" align="left">
+                                                Priority
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-aws-priority" class="form-control-static">...</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="class" class="col-form-label" align="left">
+                                                Class
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-aws-class" class="form-control-static">...</p>
                                             </div>
                                         </div>
                                     </form>
@@ -122,18 +224,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col demo-feature-with-border">
-                <div id= 'map'></div>
-                <script type="text/javascript">
-                    var map_parameters = {{ map_parameters|tojson|safe }};
-                </script>
-                <script type="text/javascript" src="/static/includes/aster-map.js"></script>
-                <script async defer src="https://maps.googleapis.com/maps/api/js?key={{google_key}}&callback=initMap&language=en"></script>
-                {#                <div id="legend"><h5>Legend</h5></div>#}
-            </div>
-            <div class="demo-feature col-3">
                 <h1 class="text-center calls">Incoming calls</h1>
                 <div class="table-container">
                     <table class="table table-striped table-dark text-center" id="call_log">
@@ -145,16 +236,30 @@
                         </thead>
                     </table>
                 </div>
-            </div>
-        </div>
-    </main>
-    </body>
 
-    <script>
-        var $message = document.getElementById('display-message');
-        var $location = document.getElementById('display-location');
-        var $score = document.getElementById('display-score');
-        var $class = document.getElementById('display-class');
+            </div>
+
+        </div>
+
+    </main>
+</body>
+
+<script>
+        var $IBMmessage = document.getElementById('display-ibm-message');
+        var $IBMconfidence = document.getElementById('display-ibm-confidence');
+        var $IBMfeatures = document.getElementById('display-ibm-features');
+        var $IBMpriority = document.getElementById('display-ibm-priority');
+        var $IBMclass = document.getElementById('display-ibm-class');
+        var $GCPmessage = document.getElementById('display-gcp-message');
+        var $GCPconfidence = document.getElementById('display-gcp-confidence');
+        var $GCPfeatures = document.getElementById('display-gcp-features');
+        var $GCPpriority = document.getElementById('display-gcp-priority');
+        var $GCPclass = document.getElementById('display-gcp-class');
+        var $AWSmessage = document.getElementById('display-aws-message');
+        var $AWSconfidence = document.getElementById('display-aws-confidence');
+        var $AWSfeatures = document.getElementById('display-aws-features');
+        var $AWSpriority = document.getElementById('display-aws-priority');
+        var $AWSclass = document.getElementById('display-aws-class');
 
         var last_response;
         var fetchInterval;
@@ -172,12 +277,13 @@
         }
 
         function update_call_log(table, call) {
+        	console.log(call)
             const index = return_index(table, call.priority);
             let row = table.insertRow(index);
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
             cell1.innerHTML = call.phone_number;
-            cell2.innerHTML = call.priority;
+            cell2.innerHTML = call.Priority.substring(0, 5);
         }
 
         $('#phone-number-input').keyup(function(e) {
@@ -196,7 +302,7 @@
                 } else if (len === 6 && e.which !== 8 && e.which !== 0) {
                     $(this).val(val + "-");
                 }
-                $(this).attr('maxlength', '14');
+                $(this).attr('maxlength', '16');
 
             });
 
@@ -205,25 +311,35 @@
 
             function update_fields() {
                 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-                $.getJSON($SCRIPT_ROOT+"/fetch_call_data?phone_number="+phone_number.replace(/[^0-9]/g, ''), function(response) {
-                    last_response = response;
+                $.getJSON($SCRIPT_ROOT+"/fetch_call_data?phone="+phone_number.replace(/[^0-9]/g, ''), function(response) {
+                    last_response = response.GCP;
                     last_response.phone_number = phone_number;
-                    $message.innerHTML = response.text;
-                    $location.innerHTML = "(" + response.latitude + ", " + response.longitude + ")";
-                    $score.innerHTML = response.priority;
-                    $class.innerHTML = response.keywords;
+                    $IBMmessage.innerHTML = response.IBM.Transcript;
+                    $IBMconfidence.innerHTML = response.IBM.Confidence;
+                    $IBMfeatures.innerHTML = response.IBM.Features;
+                    $IBMpriority.innerHTML = response.IBM.Priority;
+                    $IBMclass.innerHTML = response.IBM.Class;
+                    $GCPmessage.innerHTML = response.GCP.Transcript;
+                    $GCPconfidence.innerHTML = response.GCP.Confidence;
+                    $GCPfeatures.innerHTML = response.GCP.Features;
+                    $GCPpriority.innerHTML = response.GCP.Priority;
+                    $GCPclass.innerHTML = response.GCP.Class;
+                    $AWSmessage.innerHTML = response.AWS.Transcript;
+                    $AWSconfidence.innerHTML = response.AWS.Confidence;
+                    $AWSfeatures.innerHTML = response.AWS.Features;
+                    $AWSpriority.innerHTML = response.AWS.Priority;
+                    $AWSclass.innerHTML = response.AWS.Class;
                 });
             }
 
-            fetchInterval = setInterval(update_fields, 500); // fetches new chunks every half a second
-            setTimeout(function stopSimulation() {clearInterval(fetchInterval)}, 30000); // stops automatically after
+            fetchInterval = setInterval(update_fields, 2000); // fetches new chunks every half a second
+            setTimeout(function stopSimulation() {clearInterval(fetchInterval)}, 240000); // stops automatically after
             // 30 seconds
 
         }, false);
 
         document.getElementById('close-demo').addEventListener('click', function(event){
             clearInterval(fetchInterval);
-            console.log(last_response);
             update_call_log(document.getElementById("call_log"), last_response);
         }, false);
 

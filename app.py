@@ -7,7 +7,7 @@ from imports import *
 # Secure application
 application = Flask(__name__)
 application.secret_key = os.environ['SECRET_KEY']
-application.google_maps_key = os.environ['GOOGLEMAPS_API']
+application.google_maps_key = 'AIzaSyBU3-CY-MAfSJuM9leFwucUT5Rm31NeAz8'
 
 # Setting up Mails
 cfg = ['MAIL_SERVER', 'MAIL_PORT', 'MAIL_USE_SSL', 'MAIL_USE_TLS', 'MAIL_USERNAME', 'MAIL_PASSWORD']
@@ -80,9 +80,10 @@ def contribution_page():
 @application.route('/demo', methods=['GET'])
 def demo_page():
 
+    # San Francisco Coordinates
     map_parameters = {
         'zoom': 11.5,
-        'lat': 37.8212,  # San Francisco Coordinates
+        'lat': 37.8212,  
         'lng': -122.3709,
         'mapType': 'roadmap',
         'center_on_user_location': False
@@ -90,29 +91,37 @@ def demo_page():
 
     return render_template('demo.html', map_parameters=map_parameters, google_key=application.google_maps_key)
 
-
 @application.route('/fetch_call_data')
 def fetch_call_data():
+
+    # Retrieve phone number
+    num = request.args.get('phone')
+
+    # Initialization
+    lst = ['Transcript', 'Confidence', 'Priority', 'Emotion', 'Class']
+    ibm = dict(zip(lst, [None, None, None, None, None]))
+    gcp = dict(zip(lst, [None, None, None, None, None]))
+    aws = dict(zip(lst, [None, None, None, None, None]))
+    res = dict(AWS=aws, IBM=ibm, GCP=gcp, PHONE=num)
+
     warnings.simplefilter('ignore')
 
-    #todo: replace with correct endpoint url
-    endpoint_url = 'https://dtb.project-aster.com/fetch'
+    url = 'https://dtb.project-aster.com/demo'
+    prm = {'phone': '+{}'.format(num)}
+    req = requests.post(url, params=prm)
 
-    header = {'apikey': application.secret_key}
-    params = {'phone_number': request.args.get('phone_number')}
-
-    # req = requests.post('/'.join([endpoint_url, 'run']), headers=header, params=params)
-    req = requests.post(endpoint_url)
-
+    # Complete request
     try:
         req = json.loads(req.content)
-        # req['score'] = 300 * req['score']
-        req['phone_number'] = params['phone_number']
-    except:
-        req = {'phone_number': None, 'message': 'Error', 'location': None, 'score': None, 'class': None}
+        try: req.update(req['IBM'])
+        except: pass
+        try: req.update(req['GCP'])
+        except: pass
+        try: req.update(req['AWS'])
+        except: pass
+    except: pass
 
     return Response(response=json.dumps(req))
-
 
 if __name__ == '__main__':
    arg = {'debug': True, 'threaded': True}
