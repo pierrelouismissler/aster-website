@@ -17,11 +17,18 @@ if [ "$1" == "dev" ]; then
     print('# Insert chunk inside deactivate function');\
     print(cmd);"
 
-elif [ "$1" == "prod" ]; then 
+elif [ "$1" == "update" ]; then 
 
     python -c "import os, json;\
     cfg=json.load(open('environment.json'));\
     cmd=' '.join(['='.join([k,str(v)]) for k,v in cfg.items()]);\
     os.system('eb setenv {}'.format(cmd))"
+
+elif [ "$1" == "create" ]; then
+
+    python -c "import os, json;\
+    cfg=json.load(open('environment.json'));\
+    cmd=','.join(['='.join([k,str(v)]) for k,v in cfg.items()]);\
+    os.system('eb create aster-WEB --envvars {}'.format(cmd))"
 
 fi
