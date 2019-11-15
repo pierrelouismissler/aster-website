@@ -38,8 +38,8 @@ section {
 .row {
     width: 100%;
     height: 100%;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
     display: -webkit-box;
     display: -webkit-flex;
@@ -58,7 +58,7 @@ section {
     .row {
         min-height: 100vh;
         height: auto !important;
-        overflow: none;
+        overflow: hidden;
     }
 }
 
@@ -131,6 +131,10 @@ section {
 
 .offset {
     margin-top: 30px;
+}
+
+.tagline-offset {
+    margin-top: 80px;
 }
 
 .scroll {
@@ -234,7 +238,7 @@ section {
 @media(max-width:576px){
     .video-wrapper {
         width: 92%;
-        margin: 2vh 0px 2vh 0px;
+        margin: 2vh 0 2vh 0;
         padding-bottom: 56.25%;
     }
 }
@@ -259,7 +263,7 @@ section {
 @media(max-width:576px){
     .image-wrapper {
         height: auto !important;
-        padding-bottom: 0px;
+        padding-bottom: 0;
         margin-top: 3vh;
         margin-bottom: 3vh;
     }
@@ -281,7 +285,7 @@ section {
 @media(max-width:576px){
     .text-feature {
         margin: 2vh 3vw 2vh 3vw;
-        padding: 0px;
+        padding: 0;
     }
 }
 
@@ -309,7 +313,7 @@ section {
 @media(max-width:576px){
     .description {
         width: 92%;
-        margin: 1vh 0px 1vh 0px;
+        margin: 1vh 0 1vh 0;
     }
 }
 
@@ -402,7 +406,7 @@ section {
 .team-member figure:hover figcaption {
     visibility: visible;
     color: #fff;
-    background: rgb(4, 4, 4, 0.75); 
+    background: rgba(4, 4, 4, 0.75);
     height: 100%;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
@@ -497,7 +501,7 @@ section {
     .contact div {
         max-width: 100%;
         margin: 3vh 0vw 3vh 0vw;
-        padding: 0px;
+        padding: 0;
     }
 }
 

@@ -6,6 +6,14 @@
 *.pyc
 __pycache__
 
+# Environment files
+help/
+Include/
+Lib/
+Scripts/
+tcl/
+.idea/
+
 # Environment variables
 environment.json
 

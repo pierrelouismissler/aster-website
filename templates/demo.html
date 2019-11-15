@@ -2,20 +2,231 @@
 
 {%  block body %}
 
-<body onload="document.body.style.opacity='1'">
+    <body onload="document.body.style.opacity='1'">
+    <link href="/static/aster-demo.css" rel="stylesheet">
 
-    <title>Aster | Demo</title>
+    <main role="main" class="row home-bg-1" id='demo'>
+        <title>Aster | Demo</title>
 
-    <section class="row home-bg-1" id="home">
-
-        <div class="tagline">
-            <span>
-                Running our latest demo product!
-            </span>
+        <div class="tagline tagline-offset tagline-demo">
+            An interactive dashboard for first responders.
         </div>
+        <div class="container row">
+            <div class="demo-feature col-3 align-top row" style="padding-right: 10px">
+                <text>
+                    This is a simplified version of the dashboard that will be presented to call centers.
+                    <br>
+                    <br>
+                    An interactive map displays the most recent calls. The priority scores and classes are displayed
+                    on the right. This helps operators focus their efforts on those calls which require immediate
+                    attention.
+                </text>
+                <div class="btn-holder text-center row" style="width: 80%">
 
-    </section>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn aster-btn btn-outline-success btn-block mt-auto activated"
+                            data-loading-text="Try me!" data-toggle="modal" data-target="#startDemo">Try me!</button>
 
-</body>
+                    <!-- Modal Phone Number-->
+                    <div class="modal fade" id="startDemo" tabindex="-1" role="dialog"
+                         aria-labelledby="startDemo" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content aster-theme-modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="startDemoLabel">Try me!</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="phone-number" class="col-form-label" align="left">
+                                                Welcome to the demo of AsTeR's v1.0!<br><br>
+                                                Enter your phone number and call (208) 953-2494 as if you
+                                                were calling 911.<br><br>
+                                                Briefly summarize your emergency and don't forget to
+                                                mention your location!
+                                            </label><br>
+                                            <input class="form-control form-control-sm" name="phone number"
+                                                   type="tel" placeholder="Enter your phone number here"
+                                                   id="phone-number-input">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn aster-btn btn-outline-success btn-block mt-auto activated"
+                                            id = "start-demo" data-toggle="modal" data-target="#asterDemo"
+                                            data-dismiss="modal">Ready!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Demo-->
+                    <div class="modal fade" id="asterDemo" tabindex="-1" role="dialog"
+                         aria-labelledby="asterDemo" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content aster-theme-modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="asterDemoLabel">Demo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group row" align="left">
+                                            <label for="message" class="col-form-label" align="left">
+                                                Message
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-message" class="form-control-static">Message will be
+                                                    updated here.</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="location" class="col-form-label" align="left">
+                                                Location
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-location" class="form-control-static">Location will be
+                                                    updated here.</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="Score" class="col-form-label" align="left">
+                                                Score
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-score" class="form-control-static">Score will be
+                                                    updated here.</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row" align="left">
+                                            <label for="Class" class="col-form-label" align="left">
+                                                Class
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <p id="display-class" class="form-control-static">Class will be
+                                                    updated here.</p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="close-demo" class="btn aster-btn btn-outline-success
+                                            btn-block mt-auto activated" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col demo-feature-with-border">
+                <div id= 'map'></div>
+                <script type="text/javascript">
+                    var map_parameters = {{ map_parameters|tojson|safe }};
+                </script>
+                <script type="text/javascript" src="/static/includes/aster-map.js"></script>
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key={{google_key}}&callback=initMap&language=en"></script>
+                {#                <div id="legend"><h5>Legend</h5></div>#}
+            </div>
+            <div class="demo-feature col-3">
+                <h1 class="text-center calls">Incoming calls</h1>
+                <div class="table-container">
+                    <table class="table table-striped table-dark text-center" id="call_log">
+                        <thead>
+                        <tr>
+                            <th scope="col">Phone number</th>
+                            <th data-field="score" scope="col">Priority</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    </body>
+
+    <script>
+        var $message = document.getElementById('display-message');
+        var $location = document.getElementById('display-location');
+        var $score = document.getElementById('display-score');
+        var $class = document.getElementById('display-class');
+
+        var last_response;
+        var fetchInterval;
+
+        function return_index(table, current_priority) {
+            var rows, i, x;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                x = rows[i].getElementsByTagName("TD")[1];
+                if (Number(x.innerHTML) < current_priority) {
+                    return i
+                }
+            }
+            return i
+        }
+
+        function update_call_log(table, call) {
+            const index = return_index(table, call.priority);
+            let row = table.insertRow(index);
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            cell1.innerHTML = call.phone_number;
+            cell2.innerHTML = call.priority;
+        }
+
+        $('#phone-number-input').keyup(function(e) {
+
+                this.value = this.value.replace(/[^\-()0-9]/g, ''); //remove all chars, except dash and digits
+
+                if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+                var len = this.value.replace(/[^0-9]/g, '').length;
+                var val = $(this).val();
+                if (len === 1 && e.which !== 8 && e.which !== 0) {
+                    $(this).val("(" + val);
+                } else if (len === 3 && e.which !== 8 && e.which !== 0) {
+                    $(this).val(val + ")-");
+                } else if (len === 6 && e.which !== 8 && e.which !== 0) {
+                    $(this).val(val + "-");
+                }
+                $(this).attr('maxlength', '14');
+
+            });
+
+        document.getElementById('start-demo').addEventListener('click', function(event){
+            var phone_number = document.getElementById("phone-number-input").value;
+
+            function update_fields() {
+                $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+                $.getJSON($SCRIPT_ROOT+"/fetch_call_data?phone_number="+phone_number.replace(/[^0-9]/g, ''), function(response) {
+                    last_response = response;
+                    last_response.phone_number = phone_number;
+                    $message.innerHTML = response.text;
+                    $location.innerHTML = "(" + response.latitude + ", " + response.longitude + ")";
+                    $score.innerHTML = response.priority;
+                    $class.innerHTML = response.keywords;
+                });
+            }
+
+            fetchInterval = setInterval(update_fields, 500); // fetches new chunks every half a second
+            setTimeout(function stopSimulation() {clearInterval(fetchInterval)}, 30000); // stops automatically after
+            // 30 seconds
+
+        }, false);
+
+        document.getElementById('close-demo').addEventListener('click', function(event){
+            clearInterval(fetchInterval);
+            console.log(last_response);
+            update_call_log(document.getElementById("call_log"), last_response);
+        }, false);
+
+    </script>
 
 {% endblock %}
