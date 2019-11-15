@@ -7,7 +7,7 @@ from imports import *
 # Secure application
 application = Flask(__name__)
 application.secret_key = os.environ['SECRET_KEY']
-application.google_maps_key = 'AIzaSyBU3-CY-MAfSJuM9leFwucUT5Rm31NeAz8'
+application.google_maps_key = os.environ['GOOGLE_MAP']
 
 # Setting up Mails
 cfg = ['MAIL_SERVER', 'MAIL_PORT', 'MAIL_USE_SSL', 'MAIL_USE_TLS', 'MAIL_USERNAME', 'MAIL_PASSWORD']
