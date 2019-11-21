@@ -58,7 +58,7 @@
 }
 
 .tagline-demo {
-    border: 3px solid;
+    /*border: 3px solid;*/
 }
 
 #map {
@@ -76,10 +76,10 @@
 
 @media (min-width: 600px) {
     .container {
-        max-width: fit-content;
-        margin-left: 50px;
-        margin-right: 50px;
+        width: fit-content;
+        height: auto;
         margin-top: 30px;
+        margin-bottom: 10px;
     }
     .row {
         align-items: normal;
