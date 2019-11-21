@@ -21,8 +21,13 @@
 }
 
 .aster-btn:not(:disabled):not(.disabled):active {
-    color: #ff006c;
+    color: #e9ecef;
     border-color: #ff006c;
+    background-color: #ff006c;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 108, 0.5);
 }
 
 .aster-btn:hover {

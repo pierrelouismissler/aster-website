@@ -1,0 +1,11 @@
+# Author:  DINDIN Meryll
+# Date:    10 July 2019
+# Project: AsTeR
+
+api_key: 'a18d20d47cc642deaf83865b50e69575'
+sql_api: 'https://servicesql-comedic-lion.mybluemix.net'
+nlp_api: 'http://service-NLP.us-east-2.elasticbeanstalk.com'
+secret_key: '5y2LF4Q8znxec'
+thmblr_key: '8trFHW38YZ9imMF6lGskzJ6Mdys'
+googlemaps_api: 'AIzaSyBU3-CY-MAfSJuM9leFwucUT5Rm31NeAz8'
+mail_password: '3rhLjH3bt7D4Pz'
