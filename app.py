@@ -1,4 +1,4 @@
-# Author:  DINDIN Meryll
+# Author:  DINDIN Meryll, RADERMECKER Oskar
 # Date:    03 Octobre 2019
 # Project: aster-website
 
