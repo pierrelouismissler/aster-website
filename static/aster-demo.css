@@ -1,10 +1,14 @@
 .demo-feature {
     text-align: justify;
     border-radius: 5px;
-    max-height: 65vh;
+    max-height: 90vh;
     color: #e9ecef;
+    height: fit-content;
 }
 
+body {
+    line-height: inherit;
+}
 .demo-feature-with-border {
     border-radius: 5px;
     max-height: 75vh;
@@ -12,12 +16,17 @@
     margin-right: 3vw;
     color: #e9ecef;
     padding: 0;
-    border: 1px solid;
+    /*border: 1px solid;*/
 }
 
 .aster-btn {
     color: #ff006c;
     border-color: #ff006c;
+}
+
+.aster-btn-margin {
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .aster-btn:not(:disabled):not(.disabled):active {
@@ -59,6 +68,7 @@
 
 .tagline-demo {
     /*border: 3px solid;*/
+    max-height: 10%;
 }
 
 #map {
@@ -73,13 +83,40 @@
     left: 0;
 }
 
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    font-size: medium;
+    font-weight: 400;
+    border: none;
+    max-height: 12%;
+    background-color: #212529;
+}
 
-@media (min-width: 600px) {
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover, .collapsible:focus {
+    /*background-color: #4f6075;*/
+    /*color: #ff006c;*/
+    /*outline: #ff006c;*/
+    /*box-shadow: 0 0 0 0.2rem rgba(79, 96, 117, 0.5);*/
+    outline: none;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.explanations {
+    /*transition: max-height 0.2s ease-out;*/
+    /*max-height: 0;*/
+}
+
+@media (min-width: 400px) {
     .container {
-        width: fit-content;
-        height: auto;
-        margin-top: 30px;
-        margin-bottom: 10px;
+        /*width: fit-content;*/
+        /*height: auto;*/
+        margin-top: 20px;
+        margin-bottom: 30px;
     }
     .row {
         align-items: normal;
@@ -97,14 +134,15 @@
 
 .table thead th{
     vertical-align: middle;
+    font-weight: 400;
 }
 
 thead {
-  overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 thead.tr {
-  display: block;
+    display: block;
 }
 
 div.table-container {
@@ -119,11 +157,10 @@ div.table-container {
 }
 
 .modal-content {
-    display: inline-block;
 }
 
 .modal-dialog {
-    max-width: 90vw;
+    /*max-width: 90vw;*/
 }
 
 .col-4 {
