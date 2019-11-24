@@ -1,6 +1,6 @@
 # PROJECT: website
 
-`Author: Meryll Dindin`
+`Author: Meryll Dindin, Oskar Radermecker`
 
 ## Set up your Python3+ environment:
 
