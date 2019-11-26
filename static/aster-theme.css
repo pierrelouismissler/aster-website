@@ -117,7 +117,7 @@ section {
 .tagline {
     width: 85vw;
     color: white;
-    font-size: 2em;
+    font-size: 3vw;
     font-family: 'Open Sans', sans-serif;
     text-align: center;
 }
@@ -134,7 +134,7 @@ section {
 }
 
 .tagline-offset {
-    margin-top: 80px;
+    margin-top: 12vh;
 }
 
 .scroll {
