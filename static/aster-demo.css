@@ -11,12 +11,11 @@ body {
 }
 .demo-feature-with-border {
     border-radius: 5px;
-    max-height: 75vh;
+    max-height: 76vh;
     max-width: 70vw;
-    margin-right: 3vw;
+    margin-right: 5vw;
     color: #e9ecef;
     padding: 0;
-    /*border: 1px solid;*/
 }
 
 .aster-btn {
@@ -24,9 +23,12 @@ body {
     border-color: #ff006c;
 }
 
+.table-bottom-margin{
+    margin-bottom: 0px;
+}
+
 .aster-btn-margin {
-    margin-bottom: 15px;
-    margin-top: 15px;
+    margin-bottom: 2vh;
 }
 
 .aster-btn:not(:disabled):not(.disabled):active {
@@ -67,8 +69,9 @@ body {
 }
 
 .tagline-demo {
-    /*border: 3px solid;*/
+    margin-top: 8vh;
     max-height: 10%;
+    width: 100vw;
 }
 
 #map {
@@ -87,6 +90,7 @@ body {
 .collapsible {
     color: #fff;
     cursor: pointer;
+    border-radius: 10px 10px 0px 0px;
     padding: 10px;
     width: 100%;
     font-size: medium;
@@ -107,16 +111,17 @@ body {
 
 /* Style the collapsible content. Note: hidden by default */
 .explanations {
-    /*transition: max-height 0.2s ease-out;*/
-    /*max-height: 0;*/
+    padding: 2vh 1vw 2vh 1vw;
+    background-color: #ffffff21;
+    border-radius: 0px;
 }
 
 @media (min-width: 400px) {
     .container {
         /*width: fit-content;*/
         /*height: auto;*/
-        margin-top: 20px;
-        margin-bottom: 30px;
+        margin: 5vh 3vw 5vh 3vw;
+        max-width: 100vw;
     }
     .row {
         align-items: normal;
