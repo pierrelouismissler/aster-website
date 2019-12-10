@@ -6,16 +6,8 @@
 *.pyc
 __pycache__
 
-# Environment files
-f
-help/
-Include/
-Lib/
-Scripts/
-tcl/
-.idea/
-
 # Environment variables
+container.env
 environment.json
 
 # Sensitive prod migration

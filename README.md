@@ -1,8 +1,8 @@
-# PROJECT: website
+# aster-website
 
-`Author: Meryll Dindin, Oskar Radermecker`
+`Author: Meryll Dindin`
 
-## Set up your Python3+ environment:
+## Set up your environment:
 
 ```bash
 git clone https://github.com/Project-AsTeR/website.git
@@ -12,22 +12,84 @@ source bin/activate
 pip install -r requirements.txt
 ```
 
-## Run the Flask server locally:
+_Current support is done on Ubuntu 18.04._
+
+## Install Docker:
 
 ```bash
-python application.py
+$ sudo apt-get update
+$ sudo apt-get install docker-io
 ```
 
-## Get the environment variables right:
-
-This is mainly a good code practice, but you generally do not want to hardcode your credentials in your code. At least that is widely accepted in production settings. The way to go is to design environment variables, that are easily accessible from the running instance but written nowhere in your code. However, because there is a real difference between a development and a production environment, here are some advices about how to do it properly.
-
-My suggestion would be to use a virtualenv, and to configure your `bin/activate` to incorporate the variables once activated, and unset them when deativated. The way I usually do it is by first creating a **.json** file (that you have to make sure to incorporate in `.ebignore` and `.gitignore`) aggregating all your environment variables. The file structure has been shared through `environment-shared.json`.
-
-Then use `./deploy-env.sh dev` and copy-paste the chunks directly into your `bin/activate` file. Once done, deactivate and reactivate your environment. Now you can work easily in your development environment with those environment variables. To verify if those variables have been exported, use:
+## For Jupyter lovers, add the environment to your kernels:
 
 ```bash
-python -c "import os, pprint; env_var=os.environ; pprint.pprint(dict(env_var), width=1);"
+$ pip install jupyter notebook ipython ipykernel
+$ python -m ipykernel install --user --name=aster-website
+```
+
+## Configure your environment variables:
+
+Create the file `environment.json` to configure your entire dev/prod environment:
+
+```python
+{
+    "SECRET_KEY": "",
+    "MAIL_SERVER": "",
+    "MAIL_PORT": ,
+    "MAIL_USE_SSL": ,
+    "MAIL_USE_TLS": ,
+    "MAIL_USERNAME": "",
+    "MAIL_PASSWORD": "",
+    "GOOGLE_MAP": ""
+}
+```
+
+## Run your Flask application through a Docker image:
+
+There are two options for you. We made the current service fully available through a public Docker image, that you can retrieve using:
+
+```bash
+docker pull coricos/aster:aster-website
+```
+
+Otherwise, let's get you through the process of building it:
+
+### Build a fresh Docker image:
+
+```bash
+$ docker build -t aster-website --no-cache .
+```
+
+### Test your image locally:
+
+Create the file `container.env` to run your Docker container with the right environment variables with `./setenv.sh container`. The bash file actually relies on the previously defined `environment.json` file.
+
+```bash
+$ docker run --env-file=container.env -t -i -p 5000:5000 aster-website
+$ python -c "import requests, json; print(json.loads(requests.get('http://localhost:5000/health').content));"
+  {'result': 'online'}
+```
+
+### Create and push your own Docker image on DockerHub:
+
+```bash
+$ docker build -t aster-website .
+$ docker tag aster-website {username}/{repository}:aster-website
+$ docker push {username}/{repository}:aster-website
+```
+
+## Build your AWS service endpoint:
+
+```bash
+$ ./setenv.sh prod
+```
+
+Once the Elastic Beanstalk instance created, check its availability through:
+
+```bash
+$ python -c "import requests, json; print(json.loads(requests.get('https://{your-hosted-url}/health').content));"
+  {'result': 'online'}
 ```
 
 ## Host the website online:

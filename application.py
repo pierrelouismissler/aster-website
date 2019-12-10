@@ -123,6 +123,4 @@ def fetch_call_data():
 
     return Response(response=json.dumps(req))
 
-if __name__ == '__main__':
-   arg = {'debug': True, 'threaded': True}
-   application.run(host='127.0.0.1', port=8080, **arg)
+if __name__ == '__main__': application.run(host='0.0.0.0', threaded=True, debug=False)

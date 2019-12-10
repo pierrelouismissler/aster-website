@@ -2,19 +2,15 @@
 # Date:    03 Octobre 2019
 # Project: aster-website
 
-# Files due to compilation
+# Development stage
 *.pyc
-__pycache__/
+*.ipynb
+__pycache__
+.ipynb_checkpoints
 
-# Irrelevant files
-.gitignore
-assets/
-contributing.md
-license.txt
-readme.md
-
-# Environment variables
-deploy-env.sh
+# Sensitive
+setenv.sh
+container.env
 environment.json
 
 # OS specific files

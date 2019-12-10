@@ -11,8 +11,7 @@ global:
   application_name: {application}
   branch: null
   default_ec2_keyname: {ec2_key}
-  default_platform: arn:aws:elasticbeanstalk:us-east-2::platform/Python 3.6 running
-    on 64bit Amazon Linux/2.9.2
+  default_platform: docker
   default_region: {region}
   include_git_submodules: true
   instance_profile: null
