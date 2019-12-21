@@ -14,6 +14,7 @@ Lib/
 Scripts/
 tcl/
 .idea/
+venv/*
 
 # Environment variables
 environment.json
