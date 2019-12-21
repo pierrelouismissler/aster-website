@@ -9,7 +9,7 @@ __pycache__
 # Environment variables
 container.env
 environment.json
-venv/*
+venv/
 
 # Sensitive prod migration
 .elasticbeanstalk/config.yml
