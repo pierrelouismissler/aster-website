@@ -1,0 +1,20 @@
+# Author:  DINDIN Meryll
+# Date:    10 December 2019
+# Project: aster-website
+
+# Specific to configuration
+.ebignore
+.gitignore
+.ebextensions
+.elasticbeanstalk
+
+# Development stage
+*.pyc
+*.ipynb
+__pycache__
+.ipynb_checkpoints
+
+# Sensitive
+setenv.sh
+container.env
+environment.json

@@ -6,18 +6,10 @@
 *.pyc
 __pycache__
 
-# Environment files
-f
-help/
-Include/
-Lib/
-Scripts/
-tcl/
-.idea/
-venv/*
-
 # Environment variables
+container.env
 environment.json
+venv/*
 
 # Sensitive prod migration
 .elasticbeanstalk/config.yml
