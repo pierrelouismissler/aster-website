@@ -1,0 +1,20 @@
+# Author:  DINDIN Meryll
+# Date:    03 Octobre 2019
+# Project: aster-website
+
+# Development stage
+*.pyc
+*.ipynb
+__pycache__
+.ipynb_checkpoints
+
+# Sensitive
+setenv.sh
+container.env
+environment.json
+
+# OS specific files
+environment-shared.json
+.ebextensions/security-shared.config
+.ebextensions/listeners-shared.config
+.elasticbeanstalk/config-shared.yaml

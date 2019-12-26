@@ -1,18 +1,17 @@
-# Author:  DINDIN Meryll
+# Author:  DINDIN Meryll, RADERMECKER Oskar
 # Date:    03 Octobre 2019
 # Project: aster-website
 
 from imports import *
 
-# Load credentials
-crd = json.load(open('config/config-main.json'))
 # Secure application
 application = Flask(__name__)
-application.secret_key = crd['secret_key']
+application.secret_key = os.environ['SECRET_KEY']
+application.google_maps_key = os.environ['GOOGLE_MAP']
 
 # Setting up Mails
-crd = json.load(open('config/config-mail.json'))
-application.config.update(**crd)
+cfg = ['MAIL_SERVER', 'MAIL_PORT', 'MAIL_USE_SSL', 'MAIL_USE_TLS', 'MAIL_USERNAME', 'MAIL_PASSWORD']
+application.config.update(**{k: os.environ[k] for k in cfg})
 app_mailing = Mail(application)
 
 # Setup the contact form
@@ -21,7 +20,8 @@ class ContactForm(Form):
     name = StringField('Name', 
         [validators.Length(min=2, max=50), validators.DataRequired("A name is required!")])
     email = StringField('Email', 
-        [validators.Length(min=2, max=50), validators.DataRequired("An address is required!"), validators.Email("Seems to be a typo here!")])
+        [validators.Length(min=2, max=50), validators.DataRequired("An email address is required!"), validators.Email(
+            "Seems like there is a typo here!")])
     subject = StringField('Subject', 
         [validators.Length(min=2, max=100), validators.DataRequired("Please give a subject!")])
     message = TextAreaField('Message', 
@@ -80,9 +80,47 @@ def contribution_page():
 @application.route('/demo', methods=['GET'])
 def demo_page():
 
-    return render_template('demo.html')
+    # San Francisco Coordinates
+    map_parameters = {
+        'zoom': 11.5,
+        'lat': 37.8212,  
+        'lng': -122.3709,
+        'mapType': 'roadmap',
+        'center_on_user_location': False
+    }
 
-if __name__ == '__main__':
+    return render_template('demo.html', map_parameters=map_parameters, google_key=application.google_maps_key)
 
-    arg = {'debug': True, 'threaded': True}
-    application.run(host='127.0.0.1', port=8080, **arg)
+@application.route('/fetch_call_data')
+def fetch_call_data():
+
+    # Retrieve phone number
+    num = request.args.get('phone')
+
+    # Initialization
+    lst = ['Transcript', 'Confidence', 'Priority', 'Emotion', 'Class']
+    ibm = dict(zip(lst, [None, None, None, None, None]))
+    gcp = dict(zip(lst, [None, None, None, None, None]))
+    aws = dict(zip(lst, [None, None, None, None, None]))
+    res = dict(AWS=aws, IBM=ibm, GCP=gcp, PHONE=num)
+
+    warnings.simplefilter('ignore')
+
+    url = 'https://dtb.project-aster.com/demo'
+    prm = {'phone': '+{}'.format(num)}
+    req = requests.post(url, params=prm)
+
+    # Complete request
+    try:
+        req = json.loads(req.content)
+        try: req.update(req['IBM'])
+        except: pass
+        try: req.update(req['GCP'])
+        except: pass
+        try: req.update(req['AWS'])
+        except: pass
+    except: pass
+
+    return Response(response=json.dumps(req))
+
+if __name__ == '__main__': application.run(host='0.0.0.0', threaded=True, debug=False)

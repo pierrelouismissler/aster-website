@@ -2,8 +2,9 @@
 
     <!-- Social media redirection -->
     <div class="social-links">
-        <a class="navbar-brand" href="/"><img src="static/images/logo-aster.png" width="30" height="30" class="d-inline-block align-center" alt="Logo Aster"> AsTeR</a>
-        <a href="https://github.com/Project-AsTeR"><i class="fa fa-github"></i></a>
+        <a class="navbar-brand" href="/"><img src="/static/images/logo-aster.png" width="30" height="30"
+                                              class="d-inline-block align-center" alt="Logo Aster"> AsTeR</a>
+        <a href="https://github.com/Project-AsTeR" target="_blank"><i class="fa fa-github"></i></a>
     </div>
 
     <!-- Defines the top right side hamburger menu -->
@@ -14,15 +15,28 @@
             <div class="button" id="menu-button"><i class="fa fa-bars fa-2x"></i></div>
         </label>
 
-        <nav class="menu">
+        <nav id="responsive-menu">
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/press">Press</a></li>
-                <!-- <li><a href="/contribute">Contribute</a></li>  -->
-                <!-- <li><a href="/demo">Demo</a></li>  -->
+                <li><a href="/demo">Demo</a></li>
             </ul> 
         </nav>
 
     </div>
 
+    <!-- Defines the mobile menu -->
+
 </div>
+
+<script>
+function adaptMenu() {
+    if ($(window).width() > 596) {
+        $('#responsive-menu').addClass('menu');
+    }
+    else {
+        $('#responsive-menu').addClass('menu-mobile');
+    }
+}
+adaptMenu();
+</script>
